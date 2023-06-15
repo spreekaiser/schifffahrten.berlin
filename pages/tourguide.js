@@ -1,6 +1,11 @@
 import Head from "next/head";
+import Audioguide from "../components/Audiogiude";
 
 export default function Tourguide() {
+  function handleLanguage(event) {
+    console.log(event.target.textContent);
+  }
+
   return (
     <>
       <Head>
@@ -16,6 +21,10 @@ export default function Tourguide() {
           content="Audio tourguide für Schifffahrten in Berlin"
         />
       </Head>
+      <main>
+        <h1>Audio Tourguide</h1>
+        <Audioguide onClick={handleLanguage} />
+      </main>
     </>
   );
 }
