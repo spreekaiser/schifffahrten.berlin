@@ -3,7 +3,29 @@ import Audioguide from "../components/Audiogiude";
 
 export default function Tourguide() {
   function handleLanguage(event) {
-    console.log(event.target.textContent);
+    // console.log(event.target.textContent);
+    switch (event.target.textContent) {
+      case "deutsch":
+      case "🇩🇪":
+        console.log("de");
+        break;
+      case "english":
+      case "🇬🇧":
+        console.log("en");
+        break;
+      case "français":
+      case "🇫🇷":
+        console.log("fr");
+        break;
+      case "español":
+      case "🇪🇸":
+        console.log("es");
+        break;
+      case "italiano":
+      case "🇮🇹":
+        console.log("it");
+        break;
+    }
   }
 
   return (
