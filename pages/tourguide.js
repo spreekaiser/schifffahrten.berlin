@@ -1,31 +1,53 @@
 import Head from "next/head";
-import Audioguide from "../components/Audiogiude";
+import Audioguide from "../components/Audioguide";
+import Button from "@/components/Button";
+import WelcomeAudio from "@/components/WelcomeAudio";
+import styled from "styled-components";
+import { useState } from "react";
 
 export default function Tourguide() {
+  const [language, setLanguage] = useState("");
+  const [buttonContent, setButtonContent] = useState("");
+
   function handleLanguage(event) {
     // console.log(event.target.textContent);
     switch (event.target.textContent) {
       case "deutsch":
       case "🇩🇪":
-        console.log("de");
+        setLanguage("de");
+        setButtonContent("zurück");
+        console.log("Language: ", language);
         break;
       case "english":
       case "🇬🇧":
-        console.log("en");
+        setLanguage("en");
+        console.log("Language: ", language);
+        setButtonContent("back");
         break;
       case "français":
       case "🇫🇷":
-        console.log("fr");
+        setLanguage("fr");
+        console.log("Language: ", language);
+        setButtonContent("retour");
         break;
       case "español":
       case "🇪🇸":
-        console.log("es");
+        setLanguage("es");
+        console.log("Language: ", language);
+        setButtonContent("atrás");
         break;
-      case "italiano":
-      case "🇮🇹":
-        console.log("it");
+      case "portugués":
+      case "🇵🇹":
+        setLanguage("pt");
+        console.log("Language: ", language);
+        setButtonContent("indietro");
         break;
     }
+  }
+
+  function handleReturnClick() {
+    console.log("ReturnClick");
+    setLanguage("");
   }
 
   return (
@@ -44,9 +66,21 @@ export default function Tourguide() {
         />
       </Head>
       <main>
-        <h1>Audio Tourguide</h1>
-        <Audioguide onClick={handleLanguage} />
+        <StyledHeadline>Audio Tourguide</StyledHeadline>
+        {language === "" && <Audioguide onClick={handleLanguage} />}
+        {language && (
+          <WelcomeAudio
+            audio={{ language: language }}
+            onClick={handleReturnClick}
+          />
+        )}
       </main>
     </>
   );
 }
+
+const StyledHeadline = styled.h1`
+  text-align: center;
+  margin: 1.5em 0;
+`;
+// const StyledHead = styled(Head)``;
