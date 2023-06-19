@@ -1,13 +1,19 @@
 import Head from "next/head";
 import Audioguide from "../components/Audioguide";
-import Button from "@/components/Button";
 import WelcomeAudio from "@/components/WelcomeAudio";
 import styled from "styled-components";
 import { useState } from "react";
 
+const StyledHeadline = styled.h1`
+  text-align: center;
+  margin: 1.5em 0;
+`;
+
+// const StyledHead = styled(Head)``;
+
 export default function Tourguide() {
   const [language, setLanguage] = useState("");
-  const [buttonContent, setButtonContent] = useState("");
+  // console.log("Language: ", language);
 
   function handleLanguage(event) {
     // console.log(event.target.textContent);
@@ -15,38 +21,40 @@ export default function Tourguide() {
       case "deutsch":
       case "🇩🇪":
         setLanguage("de");
-        setButtonContent("zurück");
-        console.log("Language: ", language);
         break;
       case "english":
       case "🇬🇧":
         setLanguage("en");
-        console.log("Language: ", language);
-        setButtonContent("back");
         break;
       case "français":
       case "🇫🇷":
         setLanguage("fr");
-        console.log("Language: ", language);
-        setButtonContent("retour");
+        break;
+      case "polski":
+      case "🇵🇱":
+        setLanguage("pl");
         break;
       case "español":
       case "🇪🇸":
         setLanguage("es");
-        console.log("Language: ", language);
-        setButtonContent("atrás");
         break;
       case "portugués":
       case "🇵🇹":
         setLanguage("pt");
-        console.log("Language: ", language);
-        setButtonContent("indietro");
+        break;
+      case "portugués":
+      case "🇧🇷":
+        setLanguage("br");
+        break;
+      case "فارسی":
+      case "🇮🇷":
+        setLanguage("ir");
         break;
     }
   }
 
   function handleReturnClick() {
-    console.log("ReturnClick");
+    // console.log("ReturnClick");
     setLanguage("");
   }
 
@@ -78,9 +86,3 @@ export default function Tourguide() {
     </>
   );
 }
-
-const StyledHeadline = styled.h1`
-  text-align: center;
-  margin: 1.5em 0;
-`;
-// const StyledHead = styled(Head)``;

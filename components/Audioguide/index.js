@@ -1,32 +1,5 @@
 import styled from "styled-components";
-
-const flags = [
-  {
-    name: "deutsch",
-    language: "de",
-    icon: "🇩🇪",
-  },
-  {
-    name: "english",
-    language: "en",
-    icon: "🇬🇧",
-  },
-  {
-    name: "français",
-    language: "fr",
-    icon: "🇫🇷",
-  },
-  {
-    name: "español",
-    language: "es",
-    icon: "🇪🇸",
-  },
-  {
-    name: "portugués",
-    language: "pt",
-    icon: "🇵🇹",
-  },
-];
+import flags from "@/resources/data/flags.json";
 
 export default function Audioguide({ onClick }) {
   return (

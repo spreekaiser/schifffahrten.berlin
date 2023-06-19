@@ -1,0 +1,23 @@
+[
+  {
+    "name": "City-Spreefahrt",
+    "imageURL": "",
+    "descriptionShort": "Pflastermüde? Dann kommen Sie schnell an Bord. Die einstündige Tour auf der Spree zeigt zehn Mal täglich Berliner Highlights im Regierungsviertel und im historischen Zentrum der Stadt.",
+    "descriptionLong": "Willkommen an Bord zum Klassiker auf der Spree. Entdecken Sie die Bundeshauptstadt Berlin in einer Stunde einmal vom Wasser aus und erleben Sie entspannt ganz neue Ansichten dieser wunderbaren, nie schlafenden Metropole. Dabei haben Sie die Wahl zwischen einem Cabrioschiffes (»AC BärLiner«) oder einem Zwei-Deck-Schiff (»MS Belvedere«). Freundliche Mitarbeiter und ein gastronomischer Service erwarten Sie auf beiden Schiffen.",
+    "locations": " Berliner Dom, Fernsehturm, Nikolaiviertel, Marstall, Mühlendammschleuse, Museumsinsel mit Alter Nationalgalerie, Pergamonmuseum und Bodemuseum, Monbijoupark, Schiffbauerdamm, Tränenpalast, Regierungsviertel mit Reichstag, Bundeskanzleramt, Bundespressekonferenz, Paul-Löbe-Haus, Hauptbahnhof, Haus der Kulturen der Welt",
+    "durationInHours": 1,
+    "company": "BWSG",
+    "river": "Spree"
+  },
+  {
+    "name": "East-Side-Tour",
+    "imageURL": "",
+    "descriptionShort": "Nur bei der BWSG und nur einmal am Tag 2,5 Stunden Entspannung pur und viel Sehenswertes im Osten und in der Mitte Berlins – inklusive Schleusung durch die Mühlendamm-Schleuse.",
+    "descriptionLong": "Über Zwanzig Jahre nach dem Fall der Berliner Mauer bietet die BWSG eine Schiffstour an, die einen Teil des Grenzverlaufs auf der Spree nachzeichnet. Neben den vielen Sehenswürdigkeiten im alten und neuen Zentrum der Stadt zeigt diese Tour vor allem auch die jüngsten Veränderungen im Schatten der East-Side-Gallery, also im Ostteil der Stadt. Ein Team freundlicher Mitarbeiter begleitet Sie mit gastronomischem Service und sagt »Willkommen an Bord«.",
+    "locations": "Berliner Dom, Fernsehturm, Nikolaiviertel, Marstall, Mühlendammschleuse, Radialsystem V, Energieforum, East-Side-Gallery, Mercedes-Benz Arena, Oberbaumbrücke, Osthafen, Universal, nhow-Hotel, Coca-Cola-Zentrale, MTV, Label 1 und 2, Badeschiff der Arena Treptow, Molekule Man, Museumsinsel mit Alter Nationalgalerie und Bodemuseum, Monbijoupark, Schiffbauerdamm, Tränenpalast, Parlaments- und Regierungsviertel, Hauptbahnhof, Haus der Kulturen der Welt",
+    "durationInHours": 2.5,
+    "company": "BWSG",
+    "river": "Spree"
+  },
+  {}
+]

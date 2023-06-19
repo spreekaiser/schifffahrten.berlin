@@ -25,6 +25,11 @@
     "boat_trips_id": "ObjectId()"
   },
   {
+    "time": "14:45",
+    "boat": "Belvedere",
+    "boat_trips_id": "ObjectId()"
+  },
+  {
     "time": "15:45",
     "boat": "BärLiner",
     "boat_trips_id": "ObjectId()"

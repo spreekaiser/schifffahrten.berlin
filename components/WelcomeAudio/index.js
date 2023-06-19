@@ -1,45 +1,45 @@
 import styled from "styled-components";
 import Button from "../Button";
+import Image from "next/image";
+import welcomeImage from "../../public/images/welcomeImage.jpeg";
+import lang from "@/resources/data/language.json";
 
 export default function WelcomeAudio({ audio, onClick }) {
-  console.log("audio: ", audio.language);
-
-  var headline = "";
-  var buttonContent = "";
-
-  switch (audio.language) {
-    case "de":
-      buttonContent = "zurück";
-      headline = "Willkommen an Bord";
-      break;
-    case "en":
-      buttonContent = "back";
-      headline = "Welcome on board";
-      break;
-    case "fr":
-      buttonContent = "retour";
-      headline = "Bienvenue à bord";
-      break;
-    case "es":
-      buttonContent = "atrás";
-      headline = "Bienvenida a bordo";
-      break;
-    case "pt":
-      buttonContent = "para trás";
-      headline = "Bem-vindos a bordo";
-      break;
-  }
+  // console.log("audio: ", audio.language);
+  // console.log("lang: ", lang);
 
   return (
     <>
-      <Button onClick={onClick}>{buttonContent}</Button>
-      <StyledHeadline>{headline}</StyledHeadline>
+      <StyledButton onClick={onClick}>
+        {lang[audio.language].buttonContent}
+      </StyledButton>
+      <StyledHeadline>{lang[audio.language].headline}</StyledHeadline>
+      <StyledImage
+        // src="/images/welcomeImage.jpeg"
+        src={welcomeImage}
+        width={300}
+        height={500}
+        alt="Boat trip in Berlin"
+      />
+      <audio
+        src={`../../resources/audios/welcomeAudio_${audio.language}`}
+      ></audio>
     </>
   );
-  s;
 }
 
-const StyledHeadline = styled.h3`
+const StyledHeadline = styled.h2`
   text-align: center;
-  margin: 1.5em 0;
+  margin: 1.5em 0 0.8em 0;
+`;
+
+const StyledButton = styled(Button)`
+  margin-left: 5%;
+`;
+
+const StyledImage = styled(Image)`
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
 `;
