@@ -9,7 +9,9 @@
   },
   "fr": { "buttonContent": "retour", "headline": "Bienvenue à bord" },
   "es": { "buttonContent": "atrás", "headline": "Bienvenida a bordo" },
+  "it": { "buttonContent": "indietro", "headline": "Benvenuti a bordo" },
   "pt": { "buttonContent": "para trás", "headline": "Bem-vindos a bordo" },
+  "gr": { "buttonContent": "πίσω", "headline": "Καλώς ήρθατε στο πλοίο" },
   "br": {
     "buttonContent": "para trás",
     "headline": "Bem-vindos a bordo"

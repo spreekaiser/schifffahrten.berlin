@@ -25,6 +25,11 @@
     "icon": "🇪🇸"
   },
   {
+    "name": "italiano",
+    "language": "it",
+    "icon": "🇮🇹"
+  },
+  {
     "name": "portugués",
     "language": "pt",
     "icon": "🇵🇹"
@@ -33,6 +38,11 @@
     "name": "portugués",
     "language": "br",
     "icon": "🇧🇷"
+  },
+  {
+    "name": "Ελληνικά",
+    "language": "gr",
+    "icon": "🇬🇷"
   },
   {
     "name": "فارسی",

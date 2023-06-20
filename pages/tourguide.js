@@ -38,6 +38,10 @@ export default function Tourguide() {
       case "🇪🇸":
         setLanguage("es");
         break;
+      case "italiano":
+      case "🇮🇹":
+        setLanguage("it");
+        break;
       case "portugués":
       case "🇵🇹":
         setLanguage("pt");
@@ -45,6 +49,10 @@ export default function Tourguide() {
       case "portugués":
       case "🇧🇷":
         setLanguage("br");
+        break;
+      case "Ελληνικά":
+      case "🇬🇷":
+        setLanguage("gr");
         break;
       case "فارسی":
       case "🇮🇷":
