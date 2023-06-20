@@ -1,0 +1,42 @@
+[
+  {
+    "name": "deutsch",
+    "language": "de",
+    "icon": "🇩🇪"
+  },
+  {
+    "name": "english",
+    "language": "en",
+    "icon": "🇬🇧"
+  },
+  {
+    "name": "français",
+    "language": "fr",
+    "icon": "🇫🇷"
+  },
+  {
+    "name": "polski",
+    "language": "pl",
+    "icon": "🇵🇱"
+  },
+  {
+    "name": "español",
+    "language": "es",
+    "icon": "🇪🇸"
+  },
+  {
+    "name": "portugués",
+    "language": "pt",
+    "icon": "🇵🇹"
+  },
+  {
+    "name": "portugués",
+    "language": "br",
+    "icon": "🇧🇷"
+  },
+  {
+    "name": "فارسی",
+    "language": "ir",
+    "icon": "🇮🇷"
+  }
+]

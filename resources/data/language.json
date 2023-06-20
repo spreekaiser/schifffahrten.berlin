@@ -1,0 +1,25 @@
+{
+  "de": {
+    "buttonContent": "zurück",
+    "headline": "Willkommen an Bord"
+  },
+  "en": {
+    "buttonContent": "back",
+    "headline": "Welcome on board"
+  },
+  "fr": { "buttonContent": "retour", "headline": "Bienvenue à bord" },
+  "es": { "buttonContent": "atrás", "headline": "Bienvenida a bordo" },
+  "pt": { "buttonContent": "para trás", "headline": "Bem-vindos a bordo" },
+  "br": {
+    "buttonContent": "para trás",
+    "headline": "Bem-vindos a bordo"
+  },
+  "pl": {
+    "buttonContent": "z powrotem",
+    "headline": "Witamy na pokładzie"
+  },
+  "ir": {
+    "buttonContent": "برگشت",
+    "headline": "به عرشه خوش آمدید"
+  }
+}
