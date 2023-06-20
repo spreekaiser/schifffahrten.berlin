@@ -7,6 +7,6 @@ const boatTripSchema = new Schema({
 });
 
 const BoatTrip =
-  mongoose.models.BoatTrip || mongoose.model("BoatTrip", boatTripSchema);
+  mongoose.models.BoatTrip || mongoose.model("Boattrips", boatTripSchema);
 
 export default BoatTrip;

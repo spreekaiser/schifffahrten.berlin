@@ -1,4 +1,4 @@
-// import useSWR from "swr";
+import useSWR from "swr";
 import Head from "next/head";
 import Button from "@/components/Button";
 import Image from "next/image";
@@ -17,18 +17,30 @@ const StyledButton = styled(Button)`
   margin: 0 1%;
 `;
 
-function handleButtonClick(event) {
-  console.log(event.target.textContent);
-}
+const StyledList = styled.ul`
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+`;
+
+const ListItem = styled.li`
+  position: relative;
+  width: 90%;
+`;
 
 const buttons = ["Spree", "Havel", "Dahme", "Charter", "privat"];
 
-export default function Home() {
-  // const boatTrips = useSWR("/api/BoatTrips");
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-  // async function handleShowBoatTrips() {
-  //   const response = await fetch("/api/boatTrips");
-  // }
+export default function Home() {
+  const { boatTrips } = useSWR("/api/boattrip", fetcher);
+  console.log("boatTrips: ", boatTrips);
+
+  function handleButtonClick(event) {
+    console.log(event.target.textContent);
+  }
 
   return (
     <>
@@ -51,6 +63,11 @@ export default function Home() {
             </StyledButton>
           ))}
         </StyledDiv>
+        <StyledList>
+          {/* {boatTrips.map((boatTrip) => {
+            return <ListItem key={boatTrip._id}>{boatTrip.name}</ListItem>;
+          })} */}
+        </StyledList>
       </main>
     </>
   );
