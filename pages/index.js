@@ -35,8 +35,10 @@ const buttons = ["Spree", "Havel", "Dahme", "Charter", "privat"];
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function Home() {
-  const { boatTrips } = useSWR("/api/boattrip", fetcher);
-  console.log("boatTrips: ", boatTrips);
+  const { data, error, isLoading } = useSWR("/api/boattrip", fetcher);
+  console.log("boatTrips: ", data);
+  if (error) return console.log("failed to load");
+  if (isLoading) return console.log("loading...");
 
   function handleButtonClick(event) {
     console.log(event.target.textContent);
