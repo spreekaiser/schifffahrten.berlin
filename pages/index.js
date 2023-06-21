@@ -1,8 +1,10 @@
 import useSWR from "swr";
+import { useState } from "react";
 import Head from "next/head";
 import Button from "@/components/Button";
 import Image from "next/image";
 import styled from "styled-components";
+import BoatTripList from "@/components/BoatTripList";
 
 const StyledHeadline = styled.h1`
   margin: 1em 0 0.5em 0;
@@ -17,31 +19,23 @@ const StyledButton = styled(Button)`
   margin: 0 1%;
 `;
 
-const StyledList = styled.ul`
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1em;
-`;
-
-const ListItem = styled.li`
-  position: relative;
-  width: 90%;
-`;
-
 const buttons = ["Spree", "Havel", "Dahme", "Charter", "privat"];
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function Home() {
+  const [river, setRiver] = useState("");
+  // console.log(river);
+
   const { data, error, isLoading } = useSWR("/api/boattrip", fetcher);
-  console.log("boatTrips: ", data);
+  // console.log("boatTrips: ", data);
   if (error) return console.log("failed to load");
   if (isLoading) return console.log("loading...");
 
   function handleButtonClick(event) {
-    console.log(event.target.textContent);
+    // console.log(event.target.textContent);
+    setRiver(event.target.textContent);
+    console.log("River: ", river);
   }
 
   return (
@@ -65,11 +59,7 @@ export default function Home() {
             </StyledButton>
           ))}
         </StyledDiv>
-        <StyledList>
-          {data.map((trip) => {
-            return <ListItem key={trip._id}>{trip.name}</ListItem>;
-          })}
-        </StyledList>
+        <BoatTripList data={data} river={river} />
       </main>
     </>
   );

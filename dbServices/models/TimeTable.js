@@ -7,6 +7,6 @@ const timeTableSchema = new Schema({
 });
 
 const TimeTable =
-  mongoose.models.TimeTable || mongoose.model("timeTable", timeTableSchema);
+  mongoose.models.Timetable || mongoose.model("Timetable", timeTableSchema);
 
 export default TimeTable;
