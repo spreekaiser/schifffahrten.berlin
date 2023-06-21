@@ -3,7 +3,13 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const boatTripSchema = new Schema({
-  name: {},
+  name: String,
+  imgaeURL: String,
+  descriptionShort: String,
+  descriptionLong: String,
+  locations: String,
+  durationInHours: Number,
+  river: String,
 });
 
 const BoatTrip =

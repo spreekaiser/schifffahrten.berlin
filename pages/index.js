@@ -66,9 +66,9 @@ export default function Home() {
           ))}
         </StyledDiv>
         <StyledList>
-          {/* {boatTrips.map((boatTrip) => {
-            return <ListItem key={boatTrip._id}>{boatTrip.name}</ListItem>;
-          })} */}
+          {data.map((trip) => {
+            return <ListItem key={trip._id}>{trip.name}</ListItem>;
+          })}
         </StyledList>
       </main>
     </>
