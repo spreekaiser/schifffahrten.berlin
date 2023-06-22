@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import Image from "next/image";
+import Button from "../Button";
 
 const RiverTag = styled.h5`
-  margin: 3em 0 0 3%;
+  margin: 1em 0 0 3%;
+  /* border: solid 0.2px; */
 `;
 
 const StyledList = styled.ul`
@@ -11,7 +13,7 @@ const StyledList = styled.ul`
   display: flex;
   flex-flow: row;
   overflow-x: scroll;
-  /* scroll-snap-type: x mandatory; */
+  scroll-snap-type: x mandatory;
   gap: 4%;
   /* border: solid 0.2px; */
   /* border-radius: 10px; */
@@ -30,11 +32,76 @@ const BoxImage = styled.img`
 const ListBox = styled.div`
 width`;
 
-export default function BoatTripList({ data, river }) {
-  console.log("River in BoatTripList: ", river);
+export default function BoatTripList({ data, river, onClick }) {
+  console.log("data in BoatTripList: ", data);
+  const cityTrips = data.filter((trip) => trip.tags.includes("City"));
+  const sightseeingTrips = data.filter((trip) =>
+    trip.tags.includes("Sightseeing")
+  );
+  const familyTrips = data.filter((trip) => trip.tags.includes("Familie"));
+  const privatTrips = data.filter((trip) => trip.tags.includes("Privat"));
+
   return (
     <>
-      <RiverTag>#Spree</RiverTag>
+      <RiverTag onClick={onClick}>City: in der Innenstadt</RiverTag>
+      <StyledList>
+        {cityTrips.map((trip) => {
+          return (
+            <ListItem key={trip._id}>
+              <BoxImage
+                src={`/images/${trip.imageName}.jpeg`}
+                alt={`${trip.name}`}
+              />
+              <div>{trip.name}</div>
+            </ListItem>
+          );
+        })}
+      </StyledList>
+
+      <RiverTag onClick={onClick}>Familie</RiverTag>
+      <StyledList>
+        {familyTrips.map((trip) => {
+          return (
+            <ListItem key={trip._id}>
+              <BoxImage
+                src={`/images/${trip.imageName}.jpeg`}
+                alt={`${trip.name}`}
+              />
+              <div>{trip.name}</div>
+            </ListItem>
+          );
+        })}
+      </StyledList>
+
+      <RiverTag onClick={onClick}>Sightseeing</RiverTag>
+      <StyledList>
+        {sightseeingTrips.map((trip) => {
+          return (
+            <ListItem key={trip._id}>
+              <BoxImage
+                src={`/images/${trip.imageName}.jpeg`}
+                alt={`${trip.name}`}
+              />
+              <div>{trip.name}</div>
+            </ListItem>
+          );
+        })}
+      </StyledList>
+      <RiverTag onClick={onClick}>Privat</RiverTag>
+      <StyledList>
+        {privatTrips.map((trip) => {
+          return (
+            <ListItem key={trip._id}>
+              <BoxImage
+                src={`/images/${trip.imageName}.jpeg`}
+                alt={`${trip.name}`}
+              />
+              <div>{trip.name}</div>
+            </ListItem>
+          );
+        })}
+      </StyledList>
+
       <StyledList>
         {data.map((trip) => {
           return (

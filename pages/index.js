@@ -11,6 +11,7 @@ const StyledHeadline = styled.h1`
   text-align: center;
 `;
 const StyledDiv = styled.div`
+  margin-bottom: 3em;
   display: flex;
   justify-content: center;
 `;
@@ -59,7 +60,7 @@ export default function Home() {
             </StyledButton>
           ))}
         </StyledDiv>
-        <BoatTripList data={data} river={river} />
+        <BoatTripList data={data} river={river} onClick={handleButtonClick} />
       </main>
     </>
   );
