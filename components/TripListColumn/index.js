@@ -6,6 +6,11 @@ const StyledHeadline = styled.h4`
   display: inline;
 `;
 
+const StyledTag = styled.h4`
+  margin: 0 0 0 5%;
+  display: inline;
+`;
+
 const DetailTag = styled.h5`
   margin: 1em 0 0 3%;
   padding: 1%;
@@ -30,6 +35,7 @@ export default function TripListColumn({
   data,
   menuTagFilter,
   listTagFilter,
+  clearMenuTagFilter,
   clearListTagFilter,
 }) {
   console.log("data in TripListColumn: ", data);
@@ -59,7 +65,17 @@ export default function TripListColumn({
 
   return (
     <>
-      <StyledHeadline>Suchergebnisse für: {listTagFilter}</StyledHeadline>
+      <StyledHeadline>Suchergebnisse für:</StyledHeadline>
+      {menuTagFilter.length > 0 && (
+        <>
+          {menuTagFilter.map((filter) => (
+            <StyledTag key={filter}>{filter}</StyledTag>
+          ))}
+          <DetailTag onClick={clearMenuTagFilter}>x</DetailTag>
+        </>
+      )}
+
+      <StyledTag>{listTagFilter}</StyledTag>
       <DetailTag onClick={clearListTagFilter}>x</DetailTag>
       <StyledListColumn>
         {categoryTrips.map((trip) => {

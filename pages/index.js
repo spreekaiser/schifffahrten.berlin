@@ -94,6 +94,7 @@ export default function Home() {
             data={data}
             menuTagFilter={menuTagFilter}
             listTagFilter={listTagFilter}
+            clearMenuTagFilter={clearMenuTagFilter}
             clearListTagFilter={clearListTagFilter}
           />
         )}
