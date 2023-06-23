@@ -3,10 +3,19 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const boatTripSchema = new Schema({
-  name: {},
+  name: String,
+  imgaeName: String,
+  descriptionShort: String,
+  descriptionLong: String,
+  locations: String,
+  durationInHours: Number,
+  price: Number,
+  river: Array,
+  landingPlace: Array,
+  tags: Array,
 });
 
 const BoatTrip =
-  mongoose.models.BoatTrip || mongoose.model("BoatTrip", boatTripSchema);
+  mongoose.models.Boattrip || mongoose.model("Boattrip", boatTripSchema);
 
 export default BoatTrip;

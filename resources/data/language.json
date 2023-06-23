@@ -12,6 +12,7 @@
   "it": { "buttonContent": "indietro", "headline": "Benvenuti a bordo" },
   "pt": { "buttonContent": "para trás", "headline": "Bem-vindos a bordo" },
   "gr": { "buttonContent": "πίσω", "headline": "Καλώς ήρθατε στο πλοίο" },
+  "isr": { "buttonContent": "חֲזָרָה", "headline": "ברוכה הבא לסיפון" },
   "br": {
     "buttonContent": "para trás",
     "headline": "Bem-vindos a bordo"

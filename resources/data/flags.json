@@ -35,14 +35,14 @@
     "icon": "🇵🇹"
   },
   {
-    "name": "portugués",
-    "language": "br",
-    "icon": "🇧🇷"
-  },
-  {
     "name": "Ελληνικά",
     "language": "gr",
     "icon": "🇬🇷"
+  },
+  {
+    "name": "עִברִית",
+    "language": "isr",
+    "icon": "🇮🇱"
   },
   {
     "name": "فارسی",

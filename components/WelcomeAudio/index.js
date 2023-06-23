@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Button from "../Button";
+import Button from "../elements/Button";
 import Image from "next/image";
 import welcomeImage from "../../public/images/welcomeImage.jpeg";
 import lang from "@/resources/data/language.json";
@@ -22,7 +22,8 @@ export default function WelcomeAudio({ audio, onClick }) {
         alt="Boat trip in Berlin"
       />
       <audio
-        src={`../../resources/audios/welcomeAudio_${audio.language}`}
+        autoPlay
+        src={`/audios/welcomeAudio_${audio.language}.m4a`}
       ></audio>
     </>
   );

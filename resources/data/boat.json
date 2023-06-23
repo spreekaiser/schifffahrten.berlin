@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Bärliner",
+    "company": "BWSG",
+    "Slogan": "Gläserne Decke",
+    "boat_description": "Schickes Schiff",
+    "description_comments": "Caprio",
+    "places_onDeck": 98,
+    "sun_deck": true,
+    "number_decks": 1,
+    "places_sunDeck": 98,
+    "lenght_meter": 50,
+    "width_meter": 8,
+    "disabled-friendly": false,
+    "extra_equipment": "Schiebedach",
+    "Catering_onBord": true
+  },
+  {
+    "name": "Belvedere",
+    "company": "BWSG",
+    "Slogan": "Historischer Charme",
+    "boat_description": "robustes Schiff mit guter Aussicht",
+    "description_comments": "mit Wohnzimmer-Salon",
+    "places_onDeck": 120,
+    "sun_deck": true,
+    "number_decks": 2,
+    "places_sunDeck": 80,
+    "lenght_meter": 50,
+    "width_meter": 8,
+    "disabled-friendly": false,
+    "extra_equipment": "",
+    "Catering_onBord": true
+  },
+  {
+    "name": "MS Alexander von Humboldt",
+    "company": "Stern + Kreis",
+    "Slogan": "Gläserne Decke",
+    "boat_description": "Schickes Schiff",
+    "description_comments": "",
+    "places_onDeck": 260,
+    "sun_deck": true,
+    "number_decks": 2,
+    "places_sunDeck": 260,
+    "lenght_meter": 62,
+    "width_meter": 8.2,
+    "disabled-friendly": true,
+    "extra_equipment": "LED-Lichtdecke",
+    "Catering_onBord": true
+  }
+]

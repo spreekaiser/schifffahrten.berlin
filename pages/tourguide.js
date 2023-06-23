@@ -46,13 +46,13 @@ export default function Tourguide() {
       case "🇵🇹":
         setLanguage("pt");
         break;
-      case "portugués":
-      case "🇧🇷":
-        setLanguage("br");
-        break;
       case "Ελληνικά":
       case "🇬🇷":
         setLanguage("gr");
+        break;
+      case "עִברִית":
+      case "🇮🇱":
+        setLanguage("isr");
         break;
       case "فارسی":
       case "🇮🇷":
