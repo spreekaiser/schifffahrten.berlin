@@ -50,6 +50,10 @@ export default function Tourguide() {
       case "🇬🇷":
         setLanguage("gr");
         break;
+      case "עִברִית":
+      case "🇮🇱":
+        setLanguage("isr");
+        break;
       case "فارسی":
       case "🇮🇷":
         setLanguage("ir");

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Button from "../Button";
+import Button from "../elements/Button";
 import Image from "next/image";
 import welcomeImage from "../../public/images/welcomeImage.jpeg";
 import lang from "@/resources/data/language.json";

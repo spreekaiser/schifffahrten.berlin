@@ -1,10 +1,11 @@
 import useSWR from "swr";
 import { useState } from "react";
 import Head from "next/head";
-import Button from "@/components/Button";
+import Button from "@/components/elements/Button";
 import Image from "next/image";
 import styled from "styled-components";
-import BoatTripList from "@/components/BoatTripList";
+import TripListAll from "@/components/TripListAll";
+import TripListDetail from "@/components/TripListDetail";
 
 const StyledHeadline = styled.h1`
   margin: 1em 0 0.5em 0;
@@ -25,18 +26,25 @@ const buttons = ["Spree", "Havel", "Dahme", "Charter", "privat"];
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function Home() {
-  const [river, setRiver] = useState("");
-  // console.log(river);
+  const [riverFilter, setRiverFilter] = useState([]);
+  // console.log(filter);
+  const [tagFilter, setTagFilter] = useState([]);
 
   const { data, error, isLoading } = useSWR("/api/boattrip", fetcher);
   // console.log("boatTrips: ", data);
   if (error) return console.log("failed to load");
   if (isLoading) return console.log("loading...");
 
-  function handleButtonClick(event) {
-    // console.log(event.target.textContent);
-    setRiver(event.target.textContent);
-    console.log("River: ", river);
+  function handleRiverFilterClick(event) {
+    console.log("event in handleRiverFilterClick: ", event.target.textContent);
+    setRiverFilter([...riverFilter, event.target.textContent]);
+    console.log("RiverFilter in handleButtonClick: ", riverFilter);
+  }
+
+  function handleTagFilterClick(event) {
+    console.log("event in handleTagFilterClick: ", event.target.textContent);
+    setTagFilter([...tagFilter, event.target.textContent]);
+    console.log("TagFilter in handleButtonClick: ", tagFilter);
   }
 
   return (
@@ -55,12 +63,27 @@ export default function Home() {
         <StyledHeadline>Schifffahrten Berlin</StyledHeadline>
         <StyledDiv>
           {buttons.map((button) => (
-            <StyledButton key={button} onClick={handleButtonClick}>
+            <StyledButton key={button} onClick={handleRiverFilterClick}>
               {button}
             </StyledButton>
           ))}
         </StyledDiv>
-        <BoatTripList data={data} river={river} onClick={handleButtonClick} />
+        {/* {riverFilter.length === 0 && tagFilter.length === 0 && ( */}
+        <TripListAll
+          data={data}
+          riverFilter={riverFilter}
+          tagFilter={tagFilter}
+          onClick={handleTagFilterClick}
+        />
+        {/* )} */}
+        {/* {(riverFilter.length > 0 || tagFilter.length > 0) && (
+          <TripListAll
+            data={data}
+            riverFilter={riverFilter}
+            tagFilter={tagFilter}
+            onClick={handleTagFilterClick}
+          />
+        )} */}
       </main>
     </>
   );
