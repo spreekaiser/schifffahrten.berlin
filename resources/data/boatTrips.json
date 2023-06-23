@@ -7,9 +7,9 @@
     "durationInMinutes": 60,
     "price": 20,
     "company": "BWSG",
-    "river": ["Spree"],
+    "menuTags": ["Spree", "Charter"],
     "landingPlace": ["Alte Börse"],
-    "tags": ["Sightseeing", "City"]
+    "listTags": ["Sightseeing", "City", "Familie"]
   },
   {
     "name": "East-Side-Tour",
@@ -20,9 +20,9 @@
     "durationInMinutes": 150,
     "price": 30,
     "company": "BWSG",
-    "river": ["Spree"],
+    "menuTags": ["Spree", "Charter"],
     "landingPlace": ["Alte Börse"],
-    "tags": ["Sightseeing", "City"]
+    "listTags": ["Sightseeing", "City"]
   },
   {
     "name": "Brückenfahrt",
@@ -33,22 +33,22 @@
     "durationInMinutes": 195,
     "price": 27.9,
     "company": "Stern + Kreis",
-    "river": ["Landwehrkanal", "Spree"],
+    "menuTags": ["Spree"],
     "landingPlace": ["Jannowitzbrücke", "East Side Gallery"],
-    "tags": ["Sightseeing", "City"]
+    "listTags": ["Sightseeing", "City", "Landwehrkanal"]
   },
   {
     "name": "Havelseen-Tour",
-    "imageName": "schifffahrt-landwehrkanal",
+    "imageName": "havel-schiffstour",
     "descriptionShort": "Die weltberühmte Havel ganz nah",
     "descriptionLong": "Unser Klassiker im Norden - eine 2-stündige Schiffstour über die malerischen Oberhavelseen. Bewundern Sie die zahlreichen kleinen Inseln und Waldlandschaften sowie historischen Villen und Gebäude entlang der Ufer. Dabei passieren Sie auch den ehemaligen Grenzturm in Nieder Neuendorf.",
     "locations": "Villa Borsig • Konradshöhe • Alt Heiligensee • Nieder Neuendorf • Nieder Neuendorfer See • Saatwinkler Enge ",
     "durationInMinutes": 120,
     "price": 17.4,
     "company": "Stern + Kreis",
-    "river": ["Havel"],
+    "menuTags": ["Havel", "Charter"],
     "landingPlace": ["Tegel Greenwichprommenade"],
-    "tags": ["Sightseeing"]
+    "listTags": ["Sightseeing", "Familie"]
   },
   {
     "name": "Rund um die Müggelberge",
@@ -59,9 +59,9 @@
     "durationInMinutes": 315,
     "price": 25.9,
     "company": "Stern + Kreis",
-    "river": ["Dahme", "Spree"],
+    "menuTags": ["Dahme", "Spree"],
     "landingPlace": ["Treptower Park"],
-    "tags": ["Sightseeing"]
+    "listTags": ["Sightseeing"]
   },
   {
     "name": "Tretboot-Verleih",
@@ -72,9 +72,9 @@
     "durationInMinutes": 60,
     "price": 10,
     "company": "Müller Boote",
-    "river": ["Dahme"],
+    "menuTags": ["Dahme", "Privat"],
     "landingPlace": ["Köpenick-Schloßinsel"],
-    "tags": ["Privat", "Familie"]
+    "listTags": ["Familie"]
   },
   {
     "name": "Tretboot am Wannsee",
@@ -85,9 +85,9 @@
     "durationInMinutes": 90,
     "price": 14,
     "company": "Bootsverleih Wannsee",
-    "river": ["Havel"],
+    "menuTags": ["Havel", "Privat"],
     "landingPlace": ["S-Bahn Wannsee"],
-    "tags": ["Privat", "Familie"]
+    "listTags": ["Familie"]
   },
   {
     "name": "City Tretboote",
@@ -98,9 +98,9 @@
     "durationInMinutes": 90,
     "price": 15,
     "company": "Stadt-Boote",
-    "river": ["Spree"],
+    "menuTags": ["Spree", "Privat"],
     "landingPlace": ["Insel der Jugend"],
-    "tags": ["Privat", "Familie"]
+    "listTags": ["Familie"]
   },
   {
     "name": "Natur & Kanu",
@@ -111,9 +111,9 @@
     "durationInMinutes": 60,
     "price": 5,
     "company": "Adventure Fritze",
-    "river": ["Dahme"],
+    "menuTags": ["Dahme", "Privat"],
     "landingPlace": ["Schmöckwitz"],
-    "tags": ["Privat", "Sport"]
+    "listTags": ["Sport"]
   },
   {
     "name": "Sauna Floß",
@@ -124,8 +124,8 @@
     "durationInMinutes": 60,
     "price": 25,
     "company": "Adventure Fritze",
-    "river": ["Spree", "Müggelsee"],
+    "menuTags": ["Spree", "Privat"],
     "landingPlace": ["Schmöckwitz"],
-    "tags": ["Privat", "Fitness"]
+    "listTags": ["Fitness", "Müggelsee"]
   }
 ]

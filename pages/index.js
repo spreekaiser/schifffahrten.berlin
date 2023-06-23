@@ -4,7 +4,8 @@ import Head from "next/head";
 import Button from "@/components/elements/Button";
 import Image from "next/image";
 import styled from "styled-components";
-import TripListAll from "@/components/TripListAll";
+import TripListRow from "@/components/TripListRow";
+import TripListColumn from "@/components/TripListColumn";
 import TripListDetail from "@/components/TripListDetail";
 
 const StyledHeadline = styled.h1`
@@ -21,31 +22,38 @@ const StyledButton = styled(Button)`
   margin: 0 1%;
 `;
 
-const buttons = ["Spree", "Havel", "Dahme", "Charter", "privat"];
+const buttons = ["Spree", "Havel", "Dahme", "Privat", "Charter"];
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function Home() {
-  const [riverFilter, setRiverFilter] = useState([]);
-  // console.log(filter);
-  const [tagFilter, setTagFilter] = useState([]);
+  const [menuTagFilter, setMenuTagFilter] = useState([]);
+  const [listTagFilter, setTagFilter] = useState("");
 
   const { data, error, isLoading } = useSWR("/api/boattrip", fetcher);
   // console.log("boatTrips: ", data);
   if (error) return console.log("failed to load");
   if (isLoading) return console.log("loading...");
 
-  function handleRiverFilterClick(event) {
-    console.log("event in handleRiverFilterClick: ", event.target.textContent);
-    setRiverFilter([...riverFilter, event.target.textContent]);
-    console.log("RiverFilter in handleButtonClick: ", riverFilter);
+  function handleMenuTagFilterClick(event) {
+    // console.log("event in handleMenuTagFilterClick: ", event.target.textContent);
+    setMenuTagFilter([...menuTagFilter, event.target.textContent]);
+    // console.log("menuTagFilter in handleButtonClick: ", menuTagFilter);
+  }
+  function clearMenuTagFilter() {
+    setMenuTagFilter([]);
+    // console.log("Filter in ClearMenuTagFilter: ", menuTagFilter);
   }
 
-  function handleTagFilterClick(event) {
-    console.log("event in handleTagFilterClick: ", event.target.textContent);
-    setTagFilter([...tagFilter, event.target.textContent]);
-    console.log("TagFilter in handleButtonClick: ", tagFilter);
+  function handleListTagFilterClick(event) {
+    console.log(
+      "event in handleListTagFilterClick: ",
+      event.target.textContent
+    );
+    setTagFilter(event.target.textContent);
+    console.log("listTagFilter in handleButtonClick: ", listTagFilter);
   }
+  function clearListTagFilter() {}
 
   return (
     <>
@@ -63,27 +71,30 @@ export default function Home() {
         <StyledHeadline>Schifffahrten Berlin</StyledHeadline>
         <StyledDiv>
           {buttons.map((button) => (
-            <StyledButton key={button} onClick={handleRiverFilterClick}>
+            <StyledButton key={button} onClick={handleMenuTagFilterClick}>
               {button}
             </StyledButton>
           ))}
         </StyledDiv>
-        {/* {riverFilter.length === 0 && tagFilter.length === 0 && ( */}
-        <TripListAll
-          data={data}
-          riverFilter={riverFilter}
-          tagFilter={tagFilter}
-          onClick={handleTagFilterClick}
-        />
-        {/* )} */}
-        {/* {(riverFilter.length > 0 || tagFilter.length > 0) && (
-          <TripListAll
+
+        {listTagFilter.length == 0 && (
+          <TripListRow
             data={data}
-            riverFilter={riverFilter}
-            tagFilter={tagFilter}
-            onClick={handleTagFilterClick}
+            menuTagFilter={menuTagFilter}
+            listTagFilter={listTagFilter}
+            addListTagFilter={handleListTagFilterClick}
+            clearMenuTagFilter={clearMenuTagFilter}
           />
-        )} */}
+        )}
+
+        {listTagFilter.length > 0 && (
+          <TripListColumn
+            data={data}
+            menuTagFilter={menuTagFilter}
+            listTagFilter={listTagFilter}
+            clearListTagFilter={clearListTagFilter}
+          />
+        )}
       </main>
     </>
   );

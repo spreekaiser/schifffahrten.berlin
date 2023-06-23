@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import StyledListRow from "../elements/ListRow";
 import Button from "../elements/Button";
-import { useState, useEffect } from "react";
 
 const DetailTag = styled.h5`
   margin: 1em 0 0 3%;
@@ -31,22 +30,34 @@ const FilterCrumbs = styled.div`
   justify-content: left;
 `;
 
-export default function TripListAll({ data, riverFilter, tagFilter, onClick }) {
+const CrumbTag = styled.h4`
+  margin: 1em 0 0 3%;
+  padding: 1%;
+  display: inline;
+`;
+
+export default function TripListAll({
+  data,
+  riverFilter,
+  menuTagFilter,
+  addListTagFilter,
+  clearMenuTagFilter,
+}) {
   function filteredTrips(category) {
-    let trips = data.filter((trip) => trip.tags.includes(category));
-    if (riverFilter.length > 0) {
-      for (let i = 0; i < riverFilter.length; i++) {
-        console.log("tripsArray before Filter: ", trips);
+    let trips = data.filter((trip) => trip.listTags.includes(category));
+    if (menuTagFilter.length > 0) {
+      for (let i = 0; i < menuTagFilter.length; i++) {
+        // console.log("tripsArray before Filter: ", trips);
         trips = trips.filter((element) =>
-          element.river.includes(riverFilter[i])
+          element.menuTags.includes(menuTagFilter[i])
         );
-        console.log("tripsArray after Filter: ", trips);
+        // console.log("tripsArray after Filter: ", trips);
       }
 
-      console.log("trips after for-loop: ", trips);
+      // console.log("trips after for-loop: ", trips);
     } else {
-      trips = data.filter((trip) => trip.tags.includes(category));
-      console.log("riverFilter in esle: ", trips);
+      trips = data.filter((trip) => trip.listTags.includes(category));
+      // console.log("riverFilter in esle: ", trips);
     }
     return trips;
   }
@@ -55,30 +66,25 @@ export default function TripListAll({ data, riverFilter, tagFilter, onClick }) {
   const sightseeingTrips = filteredTrips("Sightseeing");
   const privateTrips = filteredTrips("Privat");
 
-  console.log("data in TripListAll: ", data);
-  console.log("cityTrips: ", cityTrips, cityTrips.length);
-
-  function clearRiverFilter() {
-    return (riverFilter = []);
-    // setRiverFilter([]);
-  }
+  // console.log("data in TripListAll: ", data);
+  // console.log("cityTrips: ", cityTrips, cityTrips.length);
 
   return (
     <>
-      {riverFilter.length > 0 && (
+      {menuTagFilter.length > 0 && (
         <>
           <StyledHeadline>Suchergebnisse für:</StyledHeadline>
           <FilterCrumbs>
-            <DetailTag onClick={clearRiverFilter}>x</DetailTag>
-            {riverFilter.map((filter) => (
-              <DetailTag key={filter}>{filter}</DetailTag>
+            {menuTagFilter.map((filter) => (
+              <CrumbTag key={filter}>{filter}</CrumbTag>
             ))}
+            <DetailTag onClick={clearMenuTagFilter}>x</DetailTag>
           </FilterCrumbs>
         </>
       )}
       {cityTrips.length > 0 && (
         <>
-          <DetailTag onClick={onClick}>Berlin City</DetailTag>
+          <DetailTag onClick={addListTagFilter}>City</DetailTag>
           <StyledListRow>
             {cityTrips.map((trip) => {
               return (
@@ -97,7 +103,7 @@ export default function TripListAll({ data, riverFilter, tagFilter, onClick }) {
 
       {familyTrips.length > 0 && (
         <>
-          <DetailTag onClick={onClick}>Familie</DetailTag>
+          <DetailTag onClick={addListTagFilter}>Familie</DetailTag>
           <StyledListRow>
             {familyTrips.map((trip) => {
               return (
@@ -116,7 +122,7 @@ export default function TripListAll({ data, riverFilter, tagFilter, onClick }) {
 
       {sightseeingTrips.length > 0 && (
         <>
-          <DetailTag onClick={onClick}>Sightseeing</DetailTag>
+          <DetailTag onClick={addListTagFilter}>Sightseeing</DetailTag>
           <StyledListRow>
             {sightseeingTrips.map((trip) => {
               return (
@@ -135,7 +141,7 @@ export default function TripListAll({ data, riverFilter, tagFilter, onClick }) {
 
       {privateTrips.length > 0 && (
         <>
-          <DetailTag onClick={onClick}>Privat</DetailTag>
+          <DetailTag onClick={addListTagFilter}>Privat</DetailTag>
           <StyledListRow>
             {privateTrips.map((trip) => {
               return (
@@ -151,7 +157,7 @@ export default function TripListAll({ data, riverFilter, tagFilter, onClick }) {
           </StyledListRow>
         </>
       )}
-      <DetailTag onClick={onClick}>-- All Objects --</DetailTag>
+      <DetailTag>-- All Objects --</DetailTag>
       <StyledListRow>
         {data.map((trip) => {
           return (
