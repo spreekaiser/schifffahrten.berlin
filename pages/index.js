@@ -28,7 +28,7 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function Home() {
   const [menuTagFilter, setMenuTagFilter] = useState([]);
-  const [listTagFilter, setTagFilter] = useState("");
+  const [listTagFilter, setListTagFilter] = useState("");
 
   const { data, error, isLoading } = useSWR("/api/boattrip", fetcher);
   // console.log("boatTrips: ", data);
@@ -50,10 +50,12 @@ export default function Home() {
       "event in handleListTagFilterClick: ",
       event.target.textContent
     );
-    setTagFilter(event.target.textContent);
+    setListTagFilter(event.target.textContent);
     console.log("listTagFilter in handleButtonClick: ", listTagFilter);
   }
-  function clearListTagFilter() {}
+  function clearListTagFilter() {
+    setListTagFilter("");
+  }
 
   return (
     <>

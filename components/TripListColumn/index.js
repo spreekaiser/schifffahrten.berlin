@@ -2,12 +2,23 @@ import styled from "styled-components";
 import StyledListColumn from "../elements/ListColumn";
 
 const StyledHeadline = styled.h4`
-  margin: -1em 0 0 3%;
+  margin: 0 0 1em 15%;
+  display: inline;
+`;
+
+const DetailTag = styled.h5`
+  margin: 1em 0 0 3%;
+  padding: 1%;
+  display: inline;
+  border: solid 0.2px;
+  border-radius: 3px;
 `;
 
 const ListItem = styled.li`
-  flex: 0 0 35%;
-  max-width: 250px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
 `;
 
 const BoxImage = styled.img`
@@ -49,6 +60,7 @@ export default function TripListColumn({
   return (
     <>
       <StyledHeadline>Suchergebnisse für: {listTagFilter}</StyledHeadline>
+      <DetailTag onClick={clearListTagFilter}>x</DetailTag>
       <StyledListColumn>
         {categoryTrips.map((trip) => {
           return (
