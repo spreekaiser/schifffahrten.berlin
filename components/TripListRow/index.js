@@ -64,7 +64,13 @@ export default function TripListAll({
   const cityTrips = filteredTrips("City");
   const familyTrips = filteredTrips("Familie");
   const sightseeingTrips = filteredTrips("Sightseeing");
-  const privateTrips = filteredTrips("Privat");
+  const eventTrips = filteredTrips("Event");
+  const landwehrkanalTrips = filteredTrips("Landwehrkanal");
+  const naturTrips = filteredTrips("Natur");
+  const partyTrips = filteredTrips("Party");
+  const mueggelseeTrips = filteredTrips("Müggelsee");
+  const fitnessTrips = filteredTrips("Fitness");
+  const romantikTrips = filteredTrips("Romantik");
 
   // console.log("data in TripListAll: ", data);
   // console.log("cityTrips: ", cityTrips, cityTrips.length);
@@ -139,11 +145,11 @@ export default function TripListAll({
         </>
       )}
 
-      {privateTrips.length > 0 && (
+      {eventTrips.length > 0 && (
         <>
-          <DetailTag onClick={addListTagFilter}>Privat</DetailTag>
+          <DetailTag onClick={addListTagFilter}>Event</DetailTag>
           <StyledListRow>
-            {privateTrips.map((trip) => {
+            {eventTrips.map((trip) => {
               return (
                 <ListItem key={trip._id}>
                   <BoxImage
@@ -157,6 +163,121 @@ export default function TripListAll({
           </StyledListRow>
         </>
       )}
+
+      {landwehrkanalTrips.length > 0 && (
+        <>
+          <DetailTag onClick={addListTagFilter}>Landwehrkanal</DetailTag>
+          <StyledListRow>
+            {landwehrkanalTrips.map((trip) => {
+              return (
+                <ListItem key={trip._id}>
+                  <BoxImage
+                    src={`/images/${trip.imageName}.jpeg`}
+                    alt={`${trip.name}`}
+                  />
+                  <div>{trip.name}</div>
+                </ListItem>
+              );
+            })}
+          </StyledListRow>
+        </>
+      )}
+
+      {naturTrips.length > 0 && (
+        <>
+          <DetailTag onClick={addListTagFilter}>Natur</DetailTag>
+          <StyledListRow>
+            {naturTrips.map((trip) => {
+              return (
+                <ListItem key={trip._id}>
+                  <BoxImage
+                    src={`/images/${trip.imageName}.jpeg`}
+                    alt={`${trip.name}`}
+                  />
+                  <div>{trip.name}</div>
+                </ListItem>
+              );
+            })}
+          </StyledListRow>
+        </>
+      )}
+
+      {partyTrips.length > 0 && (
+        <>
+          <DetailTag onClick={addListTagFilter}>Party</DetailTag>
+          <StyledListRow>
+            {partyTrips.map((trip) => {
+              return (
+                <ListItem key={trip._id}>
+                  <BoxImage
+                    src={`/images/${trip.imageName}.jpeg`}
+                    alt={`${trip.name}`}
+                  />
+                  <div>{trip.name}</div>
+                </ListItem>
+              );
+            })}
+          </StyledListRow>
+        </>
+      )}
+
+      {mueggelseeTrips.length > 0 && (
+        <>
+          <DetailTag onClick={addListTagFilter}>Müggelsee</DetailTag>
+          <StyledListRow>
+            {mueggelseeTrips.map((trip) => {
+              return (
+                <ListItem key={trip._id}>
+                  <BoxImage
+                    src={`/images/${trip.imageName}.jpeg`}
+                    alt={`${trip.name}`}
+                  />
+                  <div>{trip.name}</div>
+                </ListItem>
+              );
+            })}
+          </StyledListRow>
+        </>
+      )}
+
+      {fitnessTrips.length > 0 && (
+        <>
+          <DetailTag onClick={addListTagFilter}>Fitness</DetailTag>
+          <StyledListRow>
+            {fitnessTrips.map((trip) => {
+              return (
+                <ListItem key={trip._id}>
+                  <BoxImage
+                    src={`/images/${trip.imageName}.jpeg`}
+                    alt={`${trip.name}`}
+                  />
+                  <div>{trip.name}</div>
+                </ListItem>
+              );
+            })}
+          </StyledListRow>
+        </>
+      )}
+
+      {romantikTrips.length > 0 && (
+        <>
+          <DetailTag onClick={addListTagFilter}>Romantik</DetailTag>
+          <StyledListRow>
+            {romantikTrips.map((trip) => {
+              return (
+                <ListItem key={trip._id}>
+                  <BoxImage
+                    src={`/images/${trip.imageName}.jpeg`}
+                    alt={`${trip.name}`}
+                  />
+                  <div>{trip.name}</div>
+                </ListItem>
+              );
+            })}
+          </StyledListRow>
+        </>
+      )}
+
       <DetailTag>-- All Objects --</DetailTag>
       <StyledListRow>
         {data.map((trip) => {

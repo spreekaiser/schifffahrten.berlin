@@ -10,6 +10,8 @@ const boatTripSchema = new Schema({
   locations: String,
   durationInHours: Number,
   price: Number,
+  company: String,
+  logo: String,
   river: Array,
   landingPlace: Array,
   tags: Array,
