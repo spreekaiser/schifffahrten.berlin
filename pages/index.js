@@ -81,7 +81,6 @@ export default function Home() {
 
         {listTagFilter.length == 0 && (
           <TripListRow
-            data={data}
             menuTagFilter={menuTagFilter}
             listTagFilter={listTagFilter}
             addListTagFilter={handleListTagFilterClick}
