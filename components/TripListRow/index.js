@@ -96,7 +96,7 @@ export default function TripListAll({
             {cityTrips.map((trip) => {
               return (
                 <ListItem key={trip._id}>
-                  <Link href={`/${trip._id}`}>
+                  <Link href={`/boattrip/${trip._id}`}>
                     <BoxImage
                       src={`/images/${trip.imageName}.jpeg`}
                       alt={`${trip.name}`}

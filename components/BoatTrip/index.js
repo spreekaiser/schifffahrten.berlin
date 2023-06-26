@@ -1,5 +1,4 @@
 import useSWR from "swr";
-import { useRouter } from "next/router";
 import styled from "styled-components";
 import { StyledLink } from "../elements/Link/Link.styled";
 import Button from "../elements/Button";
@@ -57,10 +56,7 @@ const BuyButton = styled(Button)`
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-export default function BoatTrip() {
-  const router = useRouter();
-  const { id } = router.query;
-
+export default function BoatTrip({ id }) {
   // console.log("get id from url: ", id);
   const { data, isLoading } = useSWR(`/api/boattrip/${id}`, fetcher);
 
