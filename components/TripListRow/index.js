@@ -30,8 +30,6 @@ const StyledText = styled.h5`
   margin: 2em 0 3em 3%;
 `;
 
-// const fetcher = (...args) => fetch(...args).then((res) => res.json());
-
 export default function TripListAll({
   menuTagFilter,
   addListTagFilter,

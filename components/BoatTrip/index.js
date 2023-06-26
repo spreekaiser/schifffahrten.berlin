@@ -1,4 +1,5 @@
 import useSWR from "swr";
+import { useState } from "react";
 import styled from "styled-components";
 import { StyledLink } from "../elements/Link/Link.styled";
 import Button from "../elements/Button";
@@ -68,6 +69,7 @@ export default function BoatTrip({ id }) {
     return;
   }
   console.log("Detail Boattrip: ", data);
+
   return (
     <>
       <BoatTripCard>
@@ -90,7 +92,9 @@ export default function BoatTrip({ id }) {
           {/* <InfoElement>{data.company}</InfoElement> */}
         </InfoBox>
         <InfoText>{data.descriptionLong}</InfoText>
-        <BuyButton>Buchen</BuyButton>
+        <StyledLink href={`/boattrip/booking-form/${id}`}>
+          <BuyButton>Buchen</BuyButton>
+        </StyledLink>
         {/* <Slogan>{data.locations}</Slogan> */}
       </BoatTripCard>
     </>
