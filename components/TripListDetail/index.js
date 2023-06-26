@@ -5,13 +5,13 @@ const StyledHeadline4 = styled.h4`
   margin-left: 3%;
 `;
 
-export default function TripListDetail({ data, riverFilter, onClick }) {
-  //   console.log("TripListDertail: ", riverFilter);
+export default function TripListDetail({ data, menuTagFilter, onClick }) {
+  //   console.log("TripListDertail: ", menuTagFilter);
   // const filteredList = data.filter((trip)=> trip.);
 
   return (
     <>
-      <StyledHeadline4>{`Alles von der ${riverFilter}`}</StyledHeadline4>
+      <StyledHeadline4>{`Alles von der ${menuTagFilter}`}</StyledHeadline4>
       <StyledListColum>
         {/* {data.map((trip) => {
                     

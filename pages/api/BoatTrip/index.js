@@ -14,7 +14,7 @@ export default async function handler(req, res) {
   switch (req.method) {
     case "GET":
       const boatTrips = await BoatTrip.find();
-      console.log("api - boatTrips: ", boatTrips);
+      // console.log("api - boatTrips: ", boatTrips);
       return res.status(200).json(boatTrips);
     case "POST":
       try {

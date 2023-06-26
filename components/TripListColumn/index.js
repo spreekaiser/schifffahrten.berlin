@@ -1,13 +1,15 @@
 import styled from "styled-components";
 import StyledListColumn from "../elements/ListColumn";
 
-const StyledHeadline = styled.h4`
-  margin: 0 0 1em 15%;
-  display: inline;
+const FilterCrumbs = styled.div`
+  margin: 0 0 0 11%;
+  display: flex;
+  justify-content: left;
 `;
 
-const StyledTag = styled.h4`
-  margin: 0 0 0 5%;
+const CrumbTag = styled.h4`
+  margin: 0 0 0 3%;
+  padding: 1%;
   display: inline;
 `;
 
@@ -55,7 +57,7 @@ export default function TripListColumn({
       // console.log("trips after for-loop: ", trips);
     } else {
       trips = data.filter((trip) => trip.listTags.includes(category));
-      // console.log("riverFilter in esle: ", trips);
+      // console.log("menuTagFilter in TripListColumn: ", trips);
     }
     return trips;
   }
@@ -65,18 +67,20 @@ export default function TripListColumn({
 
   return (
     <>
-      <StyledHeadline>Suchergebnisse für:</StyledHeadline>
       {menuTagFilter.length > 0 && (
-        <>
+        <FilterCrumbs>
+          <CrumbTag>Menu Filter*:</CrumbTag>
           {menuTagFilter.map((filter) => (
-            <StyledTag key={filter}>{filter}</StyledTag>
+            <CrumbTag key={filter}>{filter}</CrumbTag>
           ))}
-          <DetailTag onClick={clearMenuTagFilter}>x</DetailTag>
-        </>
+          <CrumbTag onClick={clearMenuTagFilter}>❌</CrumbTag>
+        </FilterCrumbs>
       )}
-
-      <StyledTag>{listTagFilter}</StyledTag>
-      <DetailTag onClick={clearListTagFilter}>x</DetailTag>
+      <FilterCrumbs>
+        <CrumbTag>List Filter*:</CrumbTag>
+        <CrumbTag>{listTagFilter}</CrumbTag>
+        <CrumbTag onClick={clearListTagFilter}>❌</CrumbTag>
+      </FilterCrumbs>
       <StyledListColumn>
         {categoryTrips.map((trip) => {
           return (
