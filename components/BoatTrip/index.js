@@ -2,22 +2,13 @@ import useSWR from "swr";
 import { useState } from "react";
 import styled from "styled-components";
 import { StyledLink } from "../elements/Link/Link.styled";
+import { BackTag } from "../elements/BackTag/BackTag.styled";
+import { CardWrapper } from "../elements/CardWrapper/CardWrapper.styled";
+import { HeadlineH1 } from "../elements/HeadlineH1/HeadlineH1.styled";
+import { InfoBox_Row } from "../elements/InfoBox_Row/InfoBox_Row.styled";
+import { InfoElement } from "../elements/InfoElement/InfoElement.styled";
+
 import Button from "../elements/Button";
-
-const BoatTripCard = styled.article`
-  padding: 2em 2em;
-`;
-
-const BackTag = styled.h5`
-  padding: 1.2%;
-  display: inline;
-  border: solid 0.2px;
-  border-radius: 3px;
-`;
-
-const StyledHeadline = styled.h1`
-  margin: 1.5em 0 0.5em 0;
-`;
 
 const Slogan = styled.h5`
   margin: 0 0 0.5em 0;
@@ -31,17 +22,6 @@ const StyledLogo = styled.img`
   position: absolute;
   top: 25.5em;
   left: 15em;
-`;
-
-const InfoBox = styled.div`
-  margin: 0.5em 0 1em 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`;
-
-const InfoElement = styled.span`
-  font-size: larger;
 `;
 
 const InfoText = styled.p`
@@ -68,35 +48,35 @@ export default function BoatTrip({ id }) {
     console.log("In components/BoatTrip is no data coming!");
     return;
   }
-  console.log("Detail Boattrip: ", data);
+  // console.log("Detail Boattrip: ", data);
 
   return (
     <>
-      <BoatTripCard>
+      <CardWrapper>
         <StyledLink href="/">
           <BackTag>zurück</BackTag>
         </StyledLink>
-        <StyledHeadline>{data.name}</StyledHeadline>
+        <HeadlineH1>{data.name}</HeadlineH1>
         <Slogan>{data.descriptionShort}</Slogan>
         <StyledImage
           src={`/images/${data.imageName}.jpeg`}
           alt={data.imageName}
         />
         {/* <StyledLogo src={`/images/logos/${data.logo}.png`} alt={data.logo} /> */}
-        <InfoBox>
+        <InfoBox_Row>
           <InfoElement>{data.price} Euro</InfoElement>
           <InfoElement>{data.durationInMinutes} min</InfoElement>
-        </InfoBox>
-        <InfoBox>
+        </InfoBox_Row>
+        <InfoBox_Row>
           <InfoElement>Anbieter: {data.company}</InfoElement>
           {/* <InfoElement>{data.company}</InfoElement> */}
-        </InfoBox>
+        </InfoBox_Row>
         <InfoText>{data.descriptionLong}</InfoText>
         <StyledLink href={`/boattrip/booking-form/${id}`}>
           <BuyButton>Buchen</BuyButton>
         </StyledLink>
         {/* <Slogan>{data.locations}</Slogan> */}
-      </BoatTripCard>
+      </CardWrapper>
     </>
   );
 }
