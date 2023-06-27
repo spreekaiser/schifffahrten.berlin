@@ -51,6 +51,7 @@ export default function BookingForm() {
       setAdultPrice(price);
     }
   }
+
   function handleChildTickets(changedPrice) {
     const price = changedPrice.target.valueAsNumber * (data.price / 2);
     if (!price) {
@@ -59,12 +60,47 @@ export default function BookingForm() {
       setChildPrice(price);
     }
   }
+
   function handleDatePicker(changedDate) {
     console.log("DatePicker: ", changedDate);
   }
+
+  async function convertFormDataToJSON(formData) {
+    const json = {};
+
+    for (let i = 0; i < formData.length; i++) {
+      const element = formData[i];
+      if (element.tagName === "INPUT") {
+        json[element.id] = element.value;
+      }
+    }
+    return json;
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
     console.log("handleSumbit after 'Kaufen': ", event);
+
+    const form = event.target;
+    const formData = form.elements;
+    console.log("FormData  ---->  : ", formData);
+    const url = "http://127.0.0.1:3000/api/ticket/";
+
+    const ticketData = convertFormDataToJSON(formData);
+
+    console.log("TicketData  --++--++--->  : ", ticketData);
+
+    fetch(url, {
+      method: "POST",
+      body: ticketData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("POST-Daten empfangen: ", data);
+      })
+      .catch((error) => {
+        console.log("Fehler beim Fetch-Aufruf: ", error);
+      });
   }
 
   return (
@@ -85,7 +121,7 @@ export default function BookingForm() {
               <input
                 type="date"
                 id="dateOfTrip"
-                className="inputDate"
+                className={styles.inputData}
                 onChange={handleDatePicker}
               ></input>
             </InfoBox_Row>

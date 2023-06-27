@@ -10,7 +10,7 @@ export default async function handler(req, res) {
       return res.status(200).json(tickets);
     case "POST":
       try {
-        const ticketData = rquest.body;
+        const ticketData = JSON.parse(req.body);
         const ticket = new Ticket(ticketData);
         await ticket.save();
         return res.status(201).json("ordered ticket was stored in database");
