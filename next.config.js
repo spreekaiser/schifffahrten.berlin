@@ -4,6 +4,11 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
+  api: {
+    bodyParser: {
+      sizeLimit: "imb",
+    },
+  },
 };
 
 module.exports = nextConfig;
