@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import { useState } from "react";
+// import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { StyledLink } from "@/components/elements/Link/Link.styled";
 import { BackTag } from "@/components/elements/BackTag/BackTag.styled";
@@ -29,6 +30,8 @@ export default function BookingForm() {
   const [adultPrice, setAdultPrice] = useState(0);
   const [childPrice, setChildPrice] = useState(0);
 
+  // const history = useHistory();
+
   if (!id) {
     return null;
   }
@@ -43,7 +46,7 @@ export default function BookingForm() {
   // console.log("Boattrip in Booking-Form: ", data);
 
   function handleAdultTickets(changedPrice) {
-    console.log("AdultTickets: ", changedPrice.target.valueAsNumber);
+    // console.log("AdultTickets: ", changedPrice.target.valueAsNumber);
     const price = changedPrice.target.valueAsNumber * data.price;
     if (!price) {
       setAdultPrice(0);
@@ -77,26 +80,38 @@ export default function BookingForm() {
     return json;
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     console.log("handleSumbit after 'Kaufen': ", event);
 
     const form = event.target;
     const formData = form.elements;
     console.log("FormData  ---->  : ", formData);
-    const url = "http://127.0.0.1:3000/api/ticket/";
+    const url = "/api/ticket/";
 
     const ticketData = convertFormDataToJSON(formData);
 
-    console.log("TicketData  --++--++--->  : ", ticketData);
+    console.log("TicketData  --++--++--- : ", await ticketData);
+    console.log(
+      "# --> TicketData - adultTicket: ",
+      await ticketData.adultTickets
+    );
+    console.log("# --> TicketData - tripId: ", await ticketData.tripId);
 
     fetch(url, {
       method: "POST",
-      body: ticketData,
+      headers: {
+        "Content-Type": "application/json", // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: JSON.stringify(await ticketData),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log("POST-Daten empfangen: ", data);
+
+        // Redirect to ticket page with the ID from the database
+        console.log("+++ tripId of posted data +++  : ", data._id);
+        // history.push(`/ticket/${data._id}`);
       })
       .catch((error) => {
         console.log("Fehler beim Fetch-Aufruf: ", error);
@@ -155,26 +170,26 @@ export default function BookingForm() {
           </InfoBox_Row>
           <input
             type="hidden"
-            id="priceTotal"
+            id="priceOfTickets"
             value={adultPrice + childPrice}
           />
           <fieldset>
             <legend>Persönliche Angaben</legend>
             <InfoBox_Row>
-              <label htmlFor="firstname">Vorname:</label>
+              <label htmlFor="firstName">Vorname:</label>
               <input
                 type="text"
-                id="firstname"
-                name="firstname"
+                id="firstName"
+                name="firstName"
                 placeholder="Vorname"
               ></input>
             </InfoBox_Row>
             <InfoBox_Row>
-              <label htmlFor="lastname">Nachname:</label>
+              <label htmlFor="lastName">Nachname:</label>
               <input
                 type="text"
-                id="lastname"
-                name="lastname"
+                id="lastName"
+                name="lastName"
                 placeholder="Nachname"
               ></input>
             </InfoBox_Row>

@@ -3,15 +3,15 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const ticketSchema = new Schema({
-  tripId: String,
-  tripName: String,
-  dateOfTrip: Date,
-  adultTickets: Number,
-  childTickets: Number,
-  priceOfTickets: Number,
+  adultTickets: String,
+  childTickets: String,
+  dateOfTrip: String,
+  email: String,
   firstName: String,
   lastName: String,
-  email: String,
+  priceOfTickets: String,
+  tripId: String,
+  tripName: String,
 });
 
 const Ticket = mongoose.models.Ticket || mongoose.model("ticket", ticketSchema);
