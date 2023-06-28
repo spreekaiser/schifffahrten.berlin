@@ -12,6 +12,7 @@ const ticketSchema = new Schema({
   priceOfTickets: String,
   tripId: String,
   tripName: String,
+  company: String,
 });
 
 const Ticket = mongoose.models.Ticket || mongoose.model("ticket", ticketSchema);
