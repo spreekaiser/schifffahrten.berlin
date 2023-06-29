@@ -9,7 +9,12 @@ import { InfoBox_Row } from "@/components/elements/InfoBox_Row/InfoBox_Row.style
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const TicketHead = styled.h2`
-  margin: 1em 0 1em 1em;
+  margin: 0 0 1em 1em;
+`;
+
+const QRcode = styled.img`
+  margin: 2em 0 2em 15%;
+  width: 70%;
 `;
 
 const InfoLine = styled.p`
@@ -83,6 +88,9 @@ export default function Ticket() {
 
   return (
     <>
+      <InfoBox_Column>
+        <QRcode src={data.codeURL} alt="QR-Code" />
+      </InfoBox_Column>
       <TicketHead>Ticket {ticketStatus}</TicketHead>
       <InfoLine>
         für: <br />

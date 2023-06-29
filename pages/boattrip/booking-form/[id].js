@@ -99,24 +99,25 @@ export default function BookingForm() {
     // );
     // console.log("# --> TicketData - tripId: ", await ticketData.tripId);
 
-    fetch(url, {
+    const res = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json", // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: JSON.stringify(await ticketData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("POST-Daten empfangen: ", data);
+    });
+    const data = await res.json();
 
-        // Redirect to ticket page with the ID from the database
-        console.log("+++ tripId of posted data +++  : ", data._id);
-        router.push(`/ticket/${data.company}/${data._id}`);
-      })
-      .catch((error) => {
-        console.log("Fehler beim Fetch-Aufruf: ", error);
-      });
+    console.log("POST-Daten empfangen: ", data);
+
+    console.log("+++ tripId of posted data +++  : ", data._id);
+
+    // Redirect to ticket page with the ID from the database
+    router.push(`/ticket/${data.company}/${data._id}`);
+
+    // .catch((error) => {
+    //   console.log("Fehler beim Fetch-Aufruf: ", error);
+    // });
   }
 
   return (

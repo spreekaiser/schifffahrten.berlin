@@ -14,6 +14,7 @@ const ticketSchema = new Schema(
     tripId: String,
     tripName: String,
     company: String,
+    codeURL: String,
     boardingTime: String,
   },
   { timestamps: true }
