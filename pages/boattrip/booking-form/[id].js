@@ -42,9 +42,10 @@ export default function BookingForm() {
   }
   // console.log("Boattrip in Booking-Form: ", data);
 
+  // removing all spaces for using company name in url [slug]
   const company = data.company.replace(/\s/g, "");
   // const company = data.company.replaceALL(" ", "_");
-  console.log("Replaced Data: ", company);
+  // console.log("Replaced Data: ", company);
 
   function handleAdultTickets(changedPrice) {
     // console.log("AdultTickets: ", changedPrice.target.valueAsNumber);
@@ -108,9 +109,9 @@ export default function BookingForm() {
     });
     const data = await res.json();
 
-    console.log("POST-Daten empfangen: ", data);
-
-    console.log("+++ tripId of posted data +++  : ", data._id);
+    // checking if neede data exist
+    // console.log("POST-Daten empfangen: ", data);
+    // console.log("+++ tripId of posted data +++  : ", data._id);
 
     // Redirect to ticket page with the ID from the database
     router.push(`/ticket/${data.company}/${data._id}`);
