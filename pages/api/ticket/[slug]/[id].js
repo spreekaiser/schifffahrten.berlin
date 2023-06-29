@@ -9,7 +9,7 @@ export default async function handler(req, res) {
   switch (req.method) {
     case "GET":
       const ticket = await Ticket.findById(req.query.id);
-      console.log("req.query.id: ", req.query);
+      // console.log("req.query.id: ", req.query);
       if (!ticket) {
         return res.status(404).json({ status: "ID not found for this Ticket" });
       }
@@ -17,12 +17,11 @@ export default async function handler(req, res) {
       console.log({ ticket });
       return res.status(200).json(ticket);
     case "PUT":
-      await Ticket.findByIdAndUpdate(req.query.id, {
-        $set: req.query.id,
-      });
+      console.log("WE ARE IN THE PUT");
+      console.log("API-Slug-ID ++ reg.query.id: ", req.query.id);
+      console.log("API-Slug-ID ++ reg.body: ", req.body, typeof req.body);
+
+      await Ticket.findByIdAndUpdate(req.query.id, req.body);
       return res.status(200).json({ message: "successfully updated" });
-    case "DELETE":
-      await Ticket.findByIdAndDelete(req.query.id);
-      return res.status(200).json({ message: "successfully deleted" });
   }
 }

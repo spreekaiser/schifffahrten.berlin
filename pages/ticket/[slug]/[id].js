@@ -50,19 +50,35 @@ export default function Ticket() {
 
   function handleTripChange() {
     console.log("Fahrt wird umgebucht");
+    // Ticket.findByIdAndUpdate(id, );
   }
 
   function handleBording() {
     console.log("Fahrgast geht an Bord");
     now = new Date();
-    console.log("Ticket benutzt am: ", now);
-    setTicketValid(false);
+    console.log("Console-log --- Ticket benutzt am: ", now);
+    const url = `/api/ticket/${slug}/${id}`;
+
+    const response = fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json", // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: JSON.stringify({ boardingTime: now }),
+    })
+      .catch((error) => {
+        console.log("Fehler beim Setzen der boardingTime: ", error);
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("PUT-Daten empfangen: ", data);
+      });
   }
 
-  if (ticketValid) {
+  if (!data.boardingTime) {
     ticketStatus = "gültig";
   } else {
-    ticketStatus = `benutzt am ${now}`;
+    ticketStatus = `benutzt am ${data.boardingTime}`;
   }
 
   return (
@@ -98,7 +114,7 @@ export default function Ticket() {
       </InfoLine>
       <InfoBox_Column>
         <ChangeButton onClick={handleTripChange}>Umbuchen</ChangeButton>
-        <ChangeButton onClick={handleBording}>Bording</ChangeButton>
+        <ChangeButton onClick={handleBording}>Boarding</ChangeButton>
       </InfoBox_Column>
       {/* <InfoBox_Column>
         <ChangeButton>Ticket {ticketStatus} machen</ChangeButton>
