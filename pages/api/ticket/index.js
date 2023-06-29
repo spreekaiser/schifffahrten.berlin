@@ -1,5 +1,6 @@
 import dbConnect from "@/dbServices/connect";
 import Ticket from "@/dbServices/models/Ticket";
+import nodemailer from "nodemailer";
 
 export default async function handler(req, res) {
   await dbConnect();
@@ -13,6 +14,8 @@ export default async function handler(req, res) {
       try {
         // const ticketData = JSON.parse(req.body);
         const ticket = new Ticket(req.body);
+
+        // Mail abschicken
 
         // get ID from saved data in tickets
         // let tripId = await ticket.save().then((result) => result._id);

@@ -87,17 +87,17 @@ export default function BookingForm() {
 
     const form = event.target;
     const formData = form.elements;
-    console.log("FormData  ---->  : ", formData);
+    // console.log("FormData  ---->  : ", formData);
     const url = "/api/ticket/";
 
     const ticketData = convertFormDataToJSON(formData);
 
-    console.log("TicketData  --++--++--- : ", await ticketData);
-    console.log(
-      "# --> TicketData - adultTicket: ",
-      await ticketData.adultTickets
-    );
-    console.log("# --> TicketData - tripId: ", await ticketData.tripId);
+    // console.log("TicketData  --++--++--- : ", await ticketData);
+    // console.log(
+    //   "# --> TicketData - adultTicket: ",
+    //   await ticketData.adultTickets
+    // );
+    // console.log("# --> TicketData - tripId: ", await ticketData.tripId);
 
     fetch(url, {
       method: "POST",
