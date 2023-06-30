@@ -1,0 +1,22 @@
+[
+  {
+    "company": "Stern+Kreis",
+    "name": "Müller",
+    "password": "$2b$10$RiuWWT2OKqr1Xb6nBKtf6ORKkqzZ3OkF/YpyMlV4m.2Ewx5oAmCdG"
+  },
+  {
+    "company": "BWSG",
+    "name": "Westphal",
+    "password": "$2b$10$RiuWWT2OKqr1Xb6nBKtf6ORKkqzZ3OkF/YpyMlV4m.2Ewx5oAmCdG"
+  },
+  {
+    "company": "Stern+Kreis",
+    "name": "",
+    "password": "$2b$10$RiuWWT2OKqr1Xb6nBKtf6ORKkqzZ3OkF/YpyMlV4m.2Ewx5oAmCdG"
+  },
+  {
+    "company": "Stern+Kreis",
+    "name": "",
+    "password": "$2b$10$RiuWWT2OKqr1Xb6nBKtf6ORKkqzZ3OkF/YpyMlV4m.2Ewx5oAmCdG"
+  }
+]
