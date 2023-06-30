@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import { useState } from "react";
-// import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { StyledLink } from "@/components/elements/Link/Link.styled";
 import { BackTag } from "@/components/elements/BackTag/BackTag.styled";
@@ -30,8 +29,6 @@ export default function BookingForm() {
   const [adultPrice, setAdultPrice] = useState(0);
   const [childPrice, setChildPrice] = useState(0);
 
-  // const history = useHistory();
-
   if (!id) {
     return null;
   }
@@ -44,6 +41,11 @@ export default function BookingForm() {
     return;
   }
   // console.log("Boattrip in Booking-Form: ", data);
+
+  // removing all spaces for using company name in url [slug]
+  const company = data.company.replace(/\s/g, "");
+  // const company = data.company.replaceALL(" ", "_");
+  // console.log("Replaced Data: ", company);
 
   function handleAdultTickets(changedPrice) {
     // console.log("AdultTickets: ", changedPrice.target.valueAsNumber);
@@ -86,36 +88,37 @@ export default function BookingForm() {
 
     const form = event.target;
     const formData = form.elements;
-    console.log("FormData  ---->  : ", formData);
+    // console.log("FormData  ---->  : ", formData);
     const url = "/api/ticket/";
 
     const ticketData = convertFormDataToJSON(formData);
 
-    console.log("TicketData  --++--++--- : ", await ticketData);
-    console.log(
-      "# --> TicketData - adultTicket: ",
-      await ticketData.adultTickets
-    );
-    console.log("# --> TicketData - tripId: ", await ticketData.tripId);
+    // console.log("TicketData  --++--++--- : ", await ticketData);
+    // console.log(
+    //   "# --> TicketData - adultTicket: ",
+    //   await ticketData.adultTickets
+    // );
+    // console.log("# --> TicketData - tripId: ", await ticketData.tripId);
 
-    fetch(url, {
+    const res = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json", // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: JSON.stringify(await ticketData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("POST-Daten empfangen: ", data);
+    });
+    const data = await res.json();
 
-        // Redirect to ticket page with the ID from the database
-        console.log("+++ tripId of posted data +++  : ", data._id);
-        // history.push(`/ticket/${data._id}`);
-      })
-      .catch((error) => {
-        console.log("Fehler beim Fetch-Aufruf: ", error);
-      });
+    // checking if neede data exist
+    // console.log("POST-Daten empfangen: ", data);
+    // console.log("+++ tripId of posted data +++  : ", data._id);
+
+    // Redirect to ticket page with the ID from the database
+    router.push(`/ticket/${data.company}/${data._id}`);
+
+    // .catch((error) => {
+    //   console.log("Fehler beim Fetch-Aufruf: ", error);
+    // });
   }
 
   return (
@@ -205,6 +208,7 @@ export default function BookingForm() {
           </fieldset>
           <input type="hidden" id="tripId" value={id} />
           <input type="hidden" id="tripName" value={data.name} />
+          <input type="hidden" id="company" value={company} />
           <BuyButton type="submit">Kaufen</BuyButton>
         </form>
       </CardWrapper>

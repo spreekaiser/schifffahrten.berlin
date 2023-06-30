@@ -18,7 +18,7 @@ export default async function handler(req, res) {
       return res.status(200).json(boatTrip);
     case "PUT":
       await BoatTrip.findByIdAndUpdate(_id, {
-        $set: req.query.id,
+        $set: req.body,
       });
       return res.status(200).json({ message: "successfully updated" });
     case "DELETE":
