@@ -3,6 +3,8 @@ import Ticket from "@/dbServices/models/Ticket";
 import QRCode from "qrcode";
 import nodemailer from "nodemailer";
 
+const { SITE_HOST, EMAIL_SERVICE, EMAIL_ADDRESS, EMAIL_PASS } = process.env;
+
 export default async function handler(req, res) {
   await dbConnect();
 
@@ -18,10 +20,33 @@ export default async function handler(req, res) {
 
         // QR Code erstellen
         const codeURL = await QRCode.toDataURL(
-          `http://127.0.0.1:3000/ticket/${ticket.company}/${ticket._id}`
+          `${SITE_HOST}/ticket/${ticket.company}/${ticket._id}`
         );
 
-        // Mail abschicken
+        // sending email
+        let mailTransporter = nodemailer.createTransport({
+          service: EMAIL_SERVICE,
+          auth: {
+            user: EMAIL_ADDRESS,
+            pass: EMAIL_PASS,
+          },
+        });
+
+        let mailDetails = {
+          from: "noreplay@schifffahrten.berlin",
+          to: ticket.email,
+          subject: `Test mail`,
+          text: "This is the email, when a ticket is booked",
+        };
+
+        mailTransporter.sendMail(mailDetails, function (err, data) {
+          if (err) {
+            console.log("Error en sending Mail", err);
+          } else {
+            console.log("Email sent successfuly");
+            console.log("Email Data: ", data);
+          }
+        });
 
         // get ID from saved data in tickets
         // let tripId = await ticket.save().then((result) => result._id);
