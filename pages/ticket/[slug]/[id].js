@@ -42,6 +42,8 @@ export default function Ticket({ loggedIn }) {
 
   const [showLogin, setShowLogin] = useState(false);
   let ticketStatus, now;
+  // let boardingCompany;
+  const [boardingCompany, setBoardingCompany] = useState("");
 
   if (!id) {
     return null;
@@ -63,6 +65,36 @@ export default function Ticket({ loggedIn }) {
   function handleLogin() {
     // console.log("Ich bin eingeloggt");
     setShowLogin(!showLogin);
+  }
+  console.log("## ---> boardingCompany draußen: ", boardingCompany);
+
+  async function handleLoginSubmit(event) {
+    event.preventDefault();
+    console.log("LoginWindow - Absenden login-Daten");
+
+    const form = event.target;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+    const url = "/api/auth/login";
+    // console.log("## ---> FormData in LoginWindow: ", data);
+    // boardingCompany = data.company;
+    setBoardingCompany(data.company);
+    console.log("## ---> boardingCompany: ", boardingCompany);
+
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json", // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: JSON.stringify(data),
+    });
+    const json = await response.json();
+    console.log("JSON: ", json);
+    if (json.success) {
+      // console.log("LoginWindow: SUCCESS is OKAY!");
+      // reloading the page
+      // Router.reload();
+    }
   }
 
   async function handleLogOut() {
@@ -86,7 +118,14 @@ export default function Ticket({ loggedIn }) {
   }
 
   function handleBording() {
-    console.log("Fahrgast geht an Bord");
+    console.log(
+      "!!  +++++  boardingCompany in handleBoarding: ",
+      boardingCompany
+    );
+
+    if (boardingCompany == slug) {
+      console.log("Zeit fürs Boarding");
+    }
     now = new Date();
     console.log("Console-log --- Ticket benutzt am: ", now);
     const url = `/api/ticket/${slug}/${id}`;
@@ -104,8 +143,8 @@ export default function Ticket({ loggedIn }) {
       .then((res) => res.json())
       .then((data) => {
         console.log("PUT-Daten empfangen: ", data);
-      })
-      .then(Router.reload());
+      });
+    // .then(Router.reload());
   }
 
   if (!data.boardingTime) {
@@ -168,7 +207,7 @@ export default function Ticket({ loggedIn }) {
           <ChangeButton onClick={handleLogOut}>🔑 LogOut 🔑</ChangeButton>
         </InfoBox_Column>
       )}
-      {showLogin && <LoginWindow />}
+      {showLogin && <LoginWindow onSubmit={handleLoginSubmit} />}
     </>
   );
 }
