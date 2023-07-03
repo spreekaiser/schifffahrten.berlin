@@ -2,8 +2,11 @@ import bcrypt from "bcrypt";
 import Partner from "@/dbServices/models/Partner";
 import dbConnect from "@/dbServices/connect";
 import cookie from "cookie";
+import { withSessionRoute } from "@/lib/session";
 
-export default async function handler(req, res) {
+export default withSessionRoute(handler);
+
+async function handler(req, res) {
   await dbConnect();
   if (req.method === "POST") {
     const { company, name, password } = req.body;
@@ -31,6 +34,8 @@ export default async function handler(req, res) {
             path: "/",
           })
         );
+        req.session.partnerId = partner._id;
+        await req.session.save();
         return res.status(200).json({ success: true });
       }
     }

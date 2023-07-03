@@ -1,8 +1,11 @@
 import { useRouter } from "next/router";
+import Router from "next/router";
 import useSWR from "swr";
 import { useState } from "react";
+import { withSessionSsr } from "@/lib/session";
 import styled from "styled-components";
 import Button from "@/components/elements/Button";
+import LoginWindow from "@/components/LoginWindow";
 import { InfoBox_Column } from "@/components/elements/InfoBox_Column/InfoBox_Column.styled";
 import { InfoBox_Row } from "@/components/elements/InfoBox_Row/InfoBox_Row.styled";
 
@@ -29,16 +32,15 @@ const ChangeButton = styled(Button)`
   margin-top: 2em;
 `;
 
-export default function Ticket() {
+export default function Ticket({ loggedIn }) {
   const router = useRouter();
-  const { slug } = router.query;
-  const { id } = router.query;
-  console.log("###  Ticket id:  -> ", id);
-  console.log("###  Ticket slug:  -> ", slug);
+  const { slug, id } = router.query;
+  // console.log("###  Ticket id:  -> ", id);
+  // console.log("###  Ticket slug:  -> ", slug);
   const { data, isLoading } = useSWR(`/api/ticket/${slug}/${id}`, fetcher);
-  console.log("## -- DATA from /api/slug/id -----> ", data);
+  // console.log("## -- DATA from /api/slug/id -----> ", data);
 
-  const [ticketValid, setTicketValid] = useState(true);
+  const [showLogin, setShowLogin] = useState(false);
   let ticketStatus, now;
 
   if (!id) {
@@ -56,6 +58,31 @@ export default function Ticket() {
   function handleTripChange() {
     console.log("Fahrt wird umgebucht");
     // Ticket.findByIdAndUpdate(id, );
+  }
+
+  function handleLogin() {
+    // console.log("Ich bin eingeloggt");
+    setShowLogin(!showLogin);
+  }
+
+  async function handleLogOut() {
+    console.log("Ich werde ausgeloggt");
+
+    const url = "/api/auth/logout";
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json", // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: JSON.stringify(),
+    });
+    const json = await response.json();
+    console.log("JSON: ", json);
+    if (json.success) {
+      console.log("LogOut: SUCCESS is OKAY!");
+      // reloading the page
+      Router.reload();
+    }
   }
 
   function handleBording() {
@@ -122,11 +149,30 @@ export default function Ticket() {
       </InfoLine>
       <InfoBox_Column>
         <ChangeButton onClick={handleTripChange}>Umbuchen</ChangeButton>
-        <ChangeButton onClick={handleBording}>Boarding</ChangeButton>
       </InfoBox_Column>
-      {/* <InfoBox_Column>
-        <ChangeButton>Ticket {ticketStatus} machen</ChangeButton>
-      </InfoBox_Column> */}
+      {!loggedIn && (
+        <InfoBox_Column>
+          <ChangeButton onClick={handleLogin}>
+            🔑 Reederei-Login 🔑
+          </ChangeButton>
+        </InfoBox_Column>
+      )}
+      {loggedIn && (
+        <InfoBox_Column>
+          <ChangeButton onClick={handleBording}>Boarding</ChangeButton>
+        </InfoBox_Column>
+      )}
+      {loggedIn && (
+        <InfoBox_Column>
+          <ChangeButton onClick={handleLogOut}>🔑 LogOut 🔑</ChangeButton>
+        </InfoBox_Column>
+      )}
+      {showLogin && <LoginWindow />}
     </>
   );
 }
+
+export const getServerSideProps = withSessionSsr(async (context) => {
+  const loggedIn = !!context.req.session.partnerId;
+  return { props: { loggedIn } };
+});

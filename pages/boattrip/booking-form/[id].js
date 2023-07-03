@@ -89,9 +89,9 @@ export default function BookingForm() {
     const form = event.target;
     const formData = form.elements;
     // console.log("FormData  ---->  : ", formData);
-    const url = "/api/ticket/";
-
     const ticketData = convertFormDataToJSON(formData);
+
+    const url = "/api/ticket/";
 
     // console.log("TicketData  --++--++--- : ", await ticketData);
     // console.log(
@@ -109,7 +109,7 @@ export default function BookingForm() {
     });
     const data = await res.json();
 
-    // checking if neede data exist
+    // checking if needed data exist
     // console.log("POST-Daten empfangen: ", data);
     // console.log("+++ tripId of posted data +++  : ", data._id);
 
