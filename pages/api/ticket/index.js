@@ -2,8 +2,10 @@ import dbConnect from "@/dbServices/connect";
 import Ticket from "@/dbServices/models/Ticket";
 import QRCode from "qrcode";
 import nodemailer from "nodemailer";
+import EmailTemplate_BookedTicket from "@/lib/EmailTemplate_BookedTicket";
+import { getEmailText } from "@/lib/EmailTemplate_BookedTicket";
 
-const { SITE_HOST, EMAIL_SERVICE, EMAIL_ADDRESS, EMAIL_PASS } = process.env;
+const { SITE_HOST, EMAIL_SERVICE, EMAIL_ADDRESS, EMAIL_PASSWORD } = process.env;
 
 export default async function handler(req, res) {
   await dbConnect();
@@ -17,6 +19,7 @@ export default async function handler(req, res) {
       try {
         // Formulardaten genau wie Ticket Schema in Variable ticket + Datenbank speichern
         const ticket = await new Ticket(req.body).save();
+        // console.log("Ticket_ID", ticket);
 
         // QR Code erstellen
         const codeURL = await QRCode.toDataURL(
@@ -28,7 +31,7 @@ export default async function handler(req, res) {
           service: EMAIL_SERVICE,
           auth: {
             user: EMAIL_ADDRESS,
-            pass: EMAIL_PASS,
+            pass: EMAIL_PASSWORD,
           },
         });
 
@@ -36,8 +39,26 @@ export default async function handler(req, res) {
           from: "noreplay@schifffahrten.berlin",
           to: ticket.email,
           subject: `Test mail`,
-          text: "This is the email, when a ticket is booked",
+          html: EmailTemplate_BookedTicket(
+            ticket,
+            ticket._id,
+            codeURL,
+            SITE_HOST
+          ),
+          text: getEmailText(ticket, ticket._id, SITE_HOST),
+
+          // text: "This is the email, when a ticket is booked",
         };
+
+        // ## Zum Überprüfen des Email servers
+        // mailTransporter.verify(function (error, success) {
+        //   if (error) {
+        //     console.log("Email verify Error: ", error);
+        //   } else {
+        //     console.log("Server is ready to send Emails");
+        //     console.log("Succes Data in email verify: ", success);
+        //   }
+        // });
 
         mailTransporter.sendMail(mailDetails, function (err, data) {
           if (err) {
@@ -52,6 +73,7 @@ export default async function handler(req, res) {
         // let tripId = await ticket.save().then((result) => result._id);
 
         // Pass the ID to the front-end
+
         return res
           .status(201)
           .json(await Ticket.findByIdAndUpdate(ticket._id, { codeURL }));

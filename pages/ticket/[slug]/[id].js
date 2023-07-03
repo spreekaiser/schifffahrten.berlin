@@ -104,7 +104,8 @@ export default function Ticket({ loggedIn }) {
       .then((res) => res.json())
       .then((data) => {
         console.log("PUT-Daten empfangen: ", data);
-      });
+      })
+      .then(Router.reload());
   }
 
   if (!data.boardingTime) {
