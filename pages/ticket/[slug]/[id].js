@@ -123,7 +123,7 @@ export default function Ticket({ loggedIn }) {
     if (json.success) {
       // console.log("LoginWindow: SUCCESS is OKAY!");
       // reloading the page
-      // Router.reload();
+      Router.reload();
     }
   }
 
@@ -166,8 +166,8 @@ export default function Ticket({ loggedIn }) {
       .then((res) => res.json())
       .then((data) => {
         console.log("PUT-Daten empfangen: ", data);
-      });
-    // .then(Router.reload());
+      })
+      .then(Router.reload());
   }
 
   if (!data.boardingTime) {
