@@ -46,11 +46,11 @@ export default function Ticket({ loggedIn }) {
   // let boardingCompany;
   const [boardingCompany, setBoardingCompany] = useLocalStorageState(
     "boardingCompany",
-    ""
+    { defaultValue: "" }
   );
   const [boardingAuthority, setBoardingAuthority] = useLocalStorageState(
     "boardingAuthority",
-    false
+    { defaultValue: false }
   );
 
   if (!id) {
@@ -111,7 +111,7 @@ export default function Ticket({ loggedIn }) {
     if (json.success) {
       // console.log("LoginWindow: SUCCESS is OKAY!");
       // reloading the page
-      Router.reload();
+      setShowLogin(!showLogin);
     }
   }
 
