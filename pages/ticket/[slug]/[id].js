@@ -90,7 +90,8 @@ export default function Ticket({ loggedIn }) {
     setBoardingCompany(data.company);
     console.log("## ---> boardingCompany: ", boardingCompany);
 
-    const company = data.company;
+    const company = data.company.toLowerCase().replace("+", " ");
+
     console.log(
       "typeOf company and slug: ",
       company,
