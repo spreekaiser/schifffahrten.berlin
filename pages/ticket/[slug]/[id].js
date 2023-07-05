@@ -149,25 +149,29 @@ export default function Ticket({ loggedIn }) {
   }
 
   function handleBording() {
-    now = new Date();
-    console.log("Console-log --- Ticket benutzt am: ", now);
-    const url = `/api/ticket/${slug}/${id}`;
+    if (localStorage.getItem("boardingCompany") === slug) {
+      now = new Date();
+      console.log("Console-log --- Ticket benutzt am: ", now);
+      const url = `/api/ticket/${slug}/${id}`;
 
-    const response = fetch(url, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json", // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: JSON.stringify({ boardingTime: now }),
-    })
-      .catch((error) => {
-        console.log("Fehler beim Setzen der boardingTime: ", error);
+      const response = fetch(url, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json", // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: JSON.stringify({ boardingTime: now }),
       })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("PUT-Daten empfangen: ", data);
-      })
-      .then(Router.reload());
+        .catch((error) => {
+          console.log("Fehler beim Setzen der boardingTime: ", error);
+        })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("PUT-Daten empfangen: ", data);
+        })
+        .then(Router.reload());
+    } else {
+      console.log("No boarding permission! Wrong boot company");
+    }
   }
 
   if (!data.boardingTime) {
