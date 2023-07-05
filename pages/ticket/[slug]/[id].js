@@ -76,7 +76,7 @@ export default function Ticket({ loggedIn }) {
   }
   console.log("## ---> boardingCompany draußen: ", boardingCompany);
   console.log("## ---> boardingAuthority draußen: ", boardingAuthority);
-  const company = data.company.toLowerCase();
+  const company = data.company;
   const replacedSlug = slug.replace(" ", "+");
   console.log(
     "typeOf company and slug draußen: ",
