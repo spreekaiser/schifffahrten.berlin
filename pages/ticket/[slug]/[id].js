@@ -76,6 +76,15 @@ export default function Ticket({ loggedIn }) {
   }
   console.log("## ---> boardingCompany draußen: ", boardingCompany);
   console.log("## ---> boardingAuthority draußen: ", boardingAuthority);
+  const company = data.company.toLowerCase();
+  const replacedSlug = slug.replace(" ", "+");
+  console.log(
+    "typeOf company and slug draußen: ",
+    company,
+    typeof company,
+    replacedSlug,
+    typeof slug
+  );
 
   async function handleLoginSubmit(event) {
     event.preventDefault();
@@ -90,14 +99,14 @@ export default function Ticket({ loggedIn }) {
     setBoardingCompany(data.company);
     console.log("## ---> boardingCompany: ", boardingCompany);
 
-    const company = data.company.toLowerCase();
-    const replacedSlug = slug.replace(" ", "+");
+    // const company = data.company.toLowerCase();
+    // const replacedSlug = slug.replace(" ", "+");
 
     console.log(
-      "typeOf company and slug: ",
+      "typeOf company and slug in handleLoginSubmit: ",
       company,
       typeof company,
-      slug,
+      replacedSlug,
       typeof slug
     );
     if (company == replacedSlug) {
@@ -146,8 +155,6 @@ export default function Ticket({ loggedIn }) {
   }
 
   function handleBording() {
-    const company = data.company.toLowerCase();
-    const replacedSlug = slug.replace(" ", "+");
     if (company === replacedSlug) {
       now = new Date();
       console.log("Console-log --- Ticket benutzt am: ", now);
