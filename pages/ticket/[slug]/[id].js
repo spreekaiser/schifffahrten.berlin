@@ -119,7 +119,7 @@ export default function Ticket({ loggedIn }) {
     if (json.success) {
       // console.log("LoginWindow: SUCCESS is OKAY!");
       // reloading the page
-      setShowLogin(!showLogin);
+      Router.reload();
     }
   }
 
