@@ -90,7 +90,8 @@ export default function Ticket({ loggedIn }) {
     setBoardingCompany(data.company);
     console.log("## ---> boardingCompany: ", boardingCompany);
 
-    const company = data.company.toLowerCase().replace("+", " ");
+    const company = data.company.toLowerCase();
+    const replacedSlug = slug.replace(" ", "+");
 
     console.log(
       "typeOf company and slug: ",
@@ -99,7 +100,7 @@ export default function Ticket({ loggedIn }) {
       slug,
       typeof slug
     );
-    if (company == slug) {
+    if (company == replacedSlug) {
       console.log("Huurraaaaa - Zeit fürs Boarding");
       setBoardingAuthority(true);
     } else {
@@ -145,7 +146,9 @@ export default function Ticket({ loggedIn }) {
   }
 
   function handleBording() {
-    if (boardingCompany === slug) {
+    const company = data.company.toLowerCase();
+    const replacedSlug = slug.replace(" ", "+");
+    if (company === replacedSlug) {
       now = new Date();
       console.log("Console-log --- Ticket benutzt am: ", now);
       const url = `/api/ticket/${slug}/${id}`;
