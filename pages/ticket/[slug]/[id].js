@@ -91,7 +91,14 @@ export default function Ticket({ loggedIn }) {
     console.log("## ---> boardingCompany: ", boardingCompany);
 
     const company = data.company;
-    if (company === slug) {
+    console.log(
+      "typeOf company and slug: ",
+      company,
+      typeof company,
+      slug,
+      typeof slug
+    );
+    if (company == slug) {
       console.log("Huurraaaaa - Zeit fürs Boarding");
       setBoardingAuthority(true);
     } else {
