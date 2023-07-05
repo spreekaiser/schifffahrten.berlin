@@ -17,9 +17,9 @@ export default async function handler(req, res) {
       console.log({ ticket });
       return res.status(200).json(ticket);
     case "PUT":
-      console.log("WE ARE IN THE PUT");
-      console.log("API-Slug-ID ++ reg.query.id: ", req.query.id);
-      console.log("API-Slug-ID ++ reg.body: ", req.body, typeof req.body);
+      // console.log("WE ARE IN THE PUT");
+      // console.log("API-Slug-ID ++ reg.query.id: ", req.query.id);
+      // console.log("API-Slug-ID ++ reg.body: ", req.body, typeof req.body);
 
       await Ticket.findByIdAndUpdate(req.query.id, req.body);
       return res.status(200).json({ message: "successfully updated" });

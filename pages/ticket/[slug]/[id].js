@@ -3,6 +3,7 @@ import Router from "next/router";
 import useSWR from "swr";
 import { useState } from "react";
 import { withSessionSsr } from "@/lib/session";
+import useLocalStorageState from "use-local-storage-state";
 import styled from "styled-components";
 import Button from "@/components/elements/Button";
 import LoginWindow from "@/components/LoginWindow";
@@ -42,6 +43,11 @@ export default function Ticket({ loggedIn }) {
 
   const [showLogin, setShowLogin] = useState(false);
   let ticketStatus, now;
+  // let boardingCompany;
+  const [boardingCompany, setBoardingCompany] = useLocalStorageState(
+    "boardingCompany",
+    ""
+  );
 
   if (!id) {
     return null;
@@ -64,9 +70,66 @@ export default function Ticket({ loggedIn }) {
     // console.log("Ich bin eingeloggt");
     setShowLogin(!showLogin);
   }
+  console.log(
+    "## ---> boardingCompany draußen: ",
+    localStorage.getItem("boardingCompany")
+  );
+  console.log(
+    "## ---> boardingAuthority draußen: ",
+    JSON.parse(localStorage.getItem("boardingAuthority"))
+  );
+
+  async function handleLoginSubmit(event) {
+    event.preventDefault();
+    console.log("LoginWindow - Absenden login-Daten");
+
+    const form = event.target;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+    const url = "/api/auth/login";
+    // console.log("## ---> FormData in LoginWindow: ", data);
+    // boardingCompany = data.company;
+    localStorage.setItem("boardingCompany", data.company);
+    console.log(
+      "## ---> boardingCompany: ",
+      localStorage.getItem("boardingCompany")
+    );
+
+    const company = localStorage.getItem("boardingCompany");
+    if (company === slug) {
+      console.log("Huurraaaaa - Zeit fürs Boarding");
+      localStorage.setItem("boardingAuthority", true);
+      console.log(
+        "## ---> boardingAuthority in setItem: ",
+        localStorage.getItem("boardingAuthority")
+      );
+    } else {
+      localStorage.setItem("boardingAuthority", false);
+      console.log(
+        "## ---> boardingAuthority in setItem: ",
+        localStorage.getItem("boardingAuthority")
+      );
+    }
+
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json", // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: JSON.stringify(data),
+    });
+    const json = await response.json();
+    // console.log("JSON: ", json);
+    if (json.success) {
+      // console.log("LoginWindow: SUCCESS is OKAY!");
+      // reloading the page
+      Router.reload();
+    }
+  }
 
   async function handleLogOut() {
     console.log("Ich werde ausgeloggt");
+    localStorage.clear();
 
     const url = "/api/auth/logout";
     const response = await fetch(url, {
@@ -86,26 +149,29 @@ export default function Ticket({ loggedIn }) {
   }
 
   function handleBording() {
-    console.log("Fahrgast geht an Bord");
-    now = new Date();
-    console.log("Console-log --- Ticket benutzt am: ", now);
-    const url = `/api/ticket/${slug}/${id}`;
+    if (localStorage.getItem("boardingCompany") === slug) {
+      now = new Date();
+      console.log("Console-log --- Ticket benutzt am: ", now);
+      const url = `/api/ticket/${slug}/${id}`;
 
-    const response = fetch(url, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json", // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: JSON.stringify({ boardingTime: now }),
-    })
-      .catch((error) => {
-        console.log("Fehler beim Setzen der boardingTime: ", error);
+      const response = fetch(url, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json", // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: JSON.stringify({ boardingTime: now }),
       })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("PUT-Daten empfangen: ", data);
-      })
-      .then(Router.reload());
+        .catch((error) => {
+          console.log("Fehler beim Setzen der boardingTime: ", error);
+        })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("PUT-Daten empfangen: ", data);
+        })
+        .then(Router.reload());
+    } else {
+      console.log("No boarding permission! Wrong boot company");
+    }
   }
 
   if (!data.boardingTime) {
@@ -158,7 +224,7 @@ export default function Ticket({ loggedIn }) {
           </ChangeButton>
         </InfoBox_Column>
       )}
-      {loggedIn && (
+      {loggedIn && JSON.parse(localStorage.getItem("boardingAuthority")) && (
         <InfoBox_Column>
           <ChangeButton onClick={handleBording}>Boarding</ChangeButton>
         </InfoBox_Column>
@@ -168,7 +234,7 @@ export default function Ticket({ loggedIn }) {
           <ChangeButton onClick={handleLogOut}>🔑 LogOut 🔑</ChangeButton>
         </InfoBox_Column>
       )}
-      {showLogin && <LoginWindow />}
+      {showLogin && <LoginWindow onSubmit={handleLoginSubmit} />}
     </>
   );
 }

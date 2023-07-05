@@ -1,4 +1,5 @@
 import useSWR from "swr";
+import ListRow from "../ListRow";
 import styled from "styled-components";
 import StyledListRow from "../elements/ListRow";
 import Link from "next/link";
@@ -90,192 +91,70 @@ export default function TripListAll({
       {cityTrips.length > 0 && (
         <>
           <DetailTag onClick={addListTagFilter}>City</DetailTag>
-          <StyledListRow>
-            {cityTrips.map((trip) => {
-              return (
-                <ListItem key={trip._id}>
-                  <Link href={`/boattrip/${trip._id}`}>
-                    <BoxImage
-                      src={`/images/${trip.imageName}.jpeg`}
-                      alt={`${trip.name}`}
-                    />
-                    <div>{trip.name}</div>
-                  </Link>
-                </ListItem>
-              );
-            })}
-          </StyledListRow>
+          <ListRow tripsList={cityTrips} />
         </>
       )}
 
       {familyTrips.length > 0 && (
         <>
           <DetailTag onClick={addListTagFilter}>Familie</DetailTag>
-          <StyledListRow>
-            {familyTrips.map((trip) => {
-              return (
-                <ListItem key={trip._id}>
-                  <BoxImage
-                    src={`/images/${trip.imageName}.jpeg`}
-                    alt={`${trip.name}`}
-                  />
-                  <div>{trip.name}</div>
-                </ListItem>
-              );
-            })}
-          </StyledListRow>
+          <ListRow tripsList={familyTrips} />
         </>
       )}
 
       {sightseeingTrips.length > 0 && (
         <>
           <DetailTag onClick={addListTagFilter}>Sightseeing</DetailTag>
-          <StyledListRow>
-            {sightseeingTrips.map((trip) => {
-              return (
-                <ListItem key={trip._id}>
-                  <BoxImage
-                    src={`/images/${trip.imageName}.jpeg`}
-                    alt={`${trip.name}`}
-                  />
-                  <div>{trip.name}</div>
-                </ListItem>
-              );
-            })}
-          </StyledListRow>
+          <ListRow tripsList={sightseeingTrips} />
         </>
       )}
 
       {eventTrips.length > 0 && (
         <>
           <DetailTag onClick={addListTagFilter}>Event</DetailTag>
-          <StyledListRow>
-            {eventTrips.map((trip) => {
-              return (
-                <ListItem key={trip._id}>
-                  <BoxImage
-                    src={`/images/${trip.imageName}.jpeg`}
-                    alt={`${trip.name}`}
-                  />
-                  <div>{trip.name}</div>
-                </ListItem>
-              );
-            })}
-          </StyledListRow>
+          <ListRow tripsList={eventTrips} />
         </>
       )}
 
       {landwehrkanalTrips.length > 0 && (
         <>
           <DetailTag onClick={addListTagFilter}>Landwehrkanal</DetailTag>
-          <StyledListRow>
-            {landwehrkanalTrips.map((trip) => {
-              return (
-                <ListItem key={trip._id}>
-                  <BoxImage
-                    src={`/images/${trip.imageName}.jpeg`}
-                    alt={`${trip.name}`}
-                  />
-                  <div>{trip.name}</div>
-                </ListItem>
-              );
-            })}
-          </StyledListRow>
+          <ListRow tripsList={landwehrkanalTrips} />
         </>
       )}
 
       {naturTrips.length > 0 && (
         <>
           <DetailTag onClick={addListTagFilter}>Natur</DetailTag>
-          <StyledListRow>
-            {naturTrips.map((trip) => {
-              return (
-                <ListItem key={trip._id}>
-                  <BoxImage
-                    src={`/images/${trip.imageName}.jpeg`}
-                    alt={`${trip.name}`}
-                  />
-                  <div>{trip.name}</div>
-                </ListItem>
-              );
-            })}
-          </StyledListRow>
+          <ListRow tripsList={naturTrips} />
         </>
       )}
 
       {partyTrips.length > 0 && (
         <>
           <DetailTag onClick={addListTagFilter}>Party</DetailTag>
-          <StyledListRow>
-            {partyTrips.map((trip) => {
-              return (
-                <ListItem key={trip._id}>
-                  <BoxImage
-                    src={`/images/${trip.imageName}.jpeg`}
-                    alt={`${trip.name}`}
-                  />
-                  <div>{trip.name}</div>
-                </ListItem>
-              );
-            })}
-          </StyledListRow>
+          <ListRow tripsList={partyTrips} />
         </>
       )}
 
       {mueggelseeTrips.length > 0 && (
         <>
           <DetailTag onClick={addListTagFilter}>Müggelsee</DetailTag>
-          <StyledListRow>
-            {mueggelseeTrips.map((trip) => {
-              return (
-                <ListItem key={trip._id}>
-                  <BoxImage
-                    src={`/images/${trip.imageName}.jpeg`}
-                    alt={`${trip.name}`}
-                  />
-                  <div>{trip.name}</div>
-                </ListItem>
-              );
-            })}
-          </StyledListRow>
+          <ListRow tripsList={mueggelseeTrips} />
         </>
       )}
 
       {fitnessTrips.length > 0 && (
         <>
           <DetailTag onClick={addListTagFilter}>Fitness</DetailTag>
-          <StyledListRow>
-            {fitnessTrips.map((trip) => {
-              return (
-                <ListItem key={trip._id}>
-                  <BoxImage
-                    src={`/images/${trip.imageName}.jpeg`}
-                    alt={`${trip.name}`}
-                  />
-                  <div>{trip.name}</div>
-                </ListItem>
-              );
-            })}
-          </StyledListRow>
+          <ListRow tripsList={fitnessTrips} />
         </>
       )}
 
       {romantikTrips.length > 0 && (
         <>
           <DetailTag onClick={addListTagFilter}>Romantik</DetailTag>
-          <StyledListRow>
-            {romantikTrips.map((trip) => {
-              return (
-                <ListItem key={trip._id}>
-                  <BoxImage
-                    src={`/images/${trip.imageName}.jpeg`}
-                    alt={`${trip.name}`}
-                  />
-                  <div>{trip.name}</div>
-                </ListItem>
-              );
-            })}
-          </StyledListRow>
+          <ListRow tripsList={romantikTrips} />
         </>
       )}
 

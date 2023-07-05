@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styled from "styled-components";
 import StyledListColumn from "../elements/ListColumn";
 
@@ -23,8 +24,7 @@ const DetailTag = styled.h5`
 
 const ListItem = styled.li`
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto 2em auto;
   width: 80%;
 `;
 
@@ -85,11 +85,13 @@ export default function TripListColumn({
         {categoryTrips.map((trip) => {
           return (
             <ListItem key={trip._id}>
-              <BoxImage
-                src={`/images/${trip.imageName}.jpeg`}
-                alt={`${trip.name}`}
-              />
-              <div>{trip.name}</div>
+              <Link href={`/boattrip/${trip._id}`}>
+                <BoxImage
+                  src={`/images/${trip.imageName}.jpeg`}
+                  alt={`${trip.name}`}
+                />
+                <div>{trip.name}</div>
+              </Link>
             </ListItem>
           );
         })}

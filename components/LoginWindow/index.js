@@ -34,35 +34,35 @@ const LoginButton = styled(Button)`
   left: 60%;
 `;
 
-async function handleLoginSubmit(event) {
-  event.preventDefault();
-  console.log("LoginWindow - Absenden login-Daten");
+// async function handleLoginSubmit(event) {
+//   event.preventDefault();
+//   console.log("LoginWindow - Absenden login-Daten");
 
-  const form = event.target;
-  const formData = new FormData(form);
-  const data = Object.fromEntries(formData);
-  const url = "/api/auth/login";
-  console.log("## ---> FormData in LoginWindow: ", data);
+//   const form = event.target;
+//   const formData = new FormData(form);
+//   const data = Object.fromEntries(formData);
+//   const url = "/api/auth/login";
+//   console.log("## ---> FormData in LoginWindow: ", data);
 
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json", // 'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: JSON.stringify(data),
-  });
-  const json = await response.json();
-  //   console.log("JSON: ", json);
-  if (json.success) {
-    // console.log("LoginWindow: SUCCESS is OKAY!");
-    // reloading the page
-    Router.reload();
-  }
-}
+//   const response = await fetch(url, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json", // 'Content-Type': 'application/x-www-form-urlencoded',
+//     },
+//     body: JSON.stringify(data),
+//   });
+//   const json = await response.json();
+//   //   console.log("JSON: ", json);
+//   if (json.success) {
+//     // console.log("LoginWindow: SUCCESS is OKAY!");
+//     // reloading the page
+//     Router.reload();
+//   }
+// }
 
-export default function LoginWindow() {
+export default function LoginWindow({ onSubmit }) {
   return (
-    <Form onSubmit={handleLoginSubmit}>
+    <Form onSubmit={onSubmit}>
       <Formular>
         <FormLegend>Partner Login</FormLegend>
         <InfoBox_Row>
