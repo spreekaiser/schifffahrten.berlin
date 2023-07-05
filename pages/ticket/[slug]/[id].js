@@ -48,6 +48,10 @@ export default function Ticket({ loggedIn }) {
     "boardingCompany",
     ""
   );
+  const [boardingAuthority, setBoardingAuthority] = useLocalStorageState(
+    "boardingAuthority",
+    false
+  );
 
   if (!id) {
     return null;
@@ -70,14 +74,8 @@ export default function Ticket({ loggedIn }) {
     // console.log("Ich bin eingeloggt");
     setShowLogin(!showLogin);
   }
-  console.log(
-    "## ---> boardingCompany draußen: ",
-    localStorage.getItem("boardingCompany")
-  );
-  console.log(
-    "## ---> boardingAuthority draußen: ",
-    JSON.parse(localStorage.getItem("boardingAuthority"))
-  );
+  console.log("## ---> boardingCompany draußen: ", boardingCompany);
+  console.log("## ---> boardingAuthority draußen: ", boardingAuthority);
 
   async function handleLoginSubmit(event) {
     event.preventDefault();
@@ -89,26 +87,16 @@ export default function Ticket({ loggedIn }) {
     const url = "/api/auth/login";
     // console.log("## ---> FormData in LoginWindow: ", data);
     // boardingCompany = data.company;
-    localStorage.setItem("boardingCompany", data.company);
-    console.log(
-      "## ---> boardingCompany: ",
-      localStorage.getItem("boardingCompany")
-    );
+    setBoardingCompany(data.company);
+    console.log("## ---> boardingCompany: ", boardingCompany);
 
-    const company = localStorage.getItem("boardingCompany");
+    const company = data.company;
     if (company === slug) {
       console.log("Huurraaaaa - Zeit fürs Boarding");
-      localStorage.setItem("boardingAuthority", true);
-      console.log(
-        "## ---> boardingAuthority in setItem: ",
-        localStorage.getItem("boardingAuthority")
-      );
+      setBoardingAuthority(true);
     } else {
-      localStorage.setItem("boardingAuthority", false);
-      console.log(
-        "## ---> boardingAuthority in setItem: ",
-        localStorage.getItem("boardingAuthority")
-      );
+      setBoardingAuthority(false);
+      console.log("## ---> boardingAuthority is false");
     }
 
     const response = await fetch(url, {
@@ -149,7 +137,7 @@ export default function Ticket({ loggedIn }) {
   }
 
   function handleBording() {
-    if (localStorage.getItem("boardingCompany") === slug) {
+    if (boardingCompany === slug) {
       now = new Date();
       console.log("Console-log --- Ticket benutzt am: ", now);
       const url = `/api/ticket/${slug}/${id}`;
@@ -224,7 +212,7 @@ export default function Ticket({ loggedIn }) {
           </ChangeButton>
         </InfoBox_Column>
       )}
-      {loggedIn && JSON.parse(localStorage.getItem("boardingAuthority")) && (
+      {loggedIn && boardingAuthority && (
         <InfoBox_Column>
           <ChangeButton onClick={handleBording}>Boarding</ChangeButton>
         </InfoBox_Column>
