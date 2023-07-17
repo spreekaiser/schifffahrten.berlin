@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Button from "../elements/Button";
 import Image from "next/image";
@@ -7,6 +8,37 @@ import lang from "@/resources/data/language.json";
 export default function WelcomeAudio({ audio, onClick }) {
   // console.log("audio: ", audio.language);
   // console.log("lang: ", lang);
+
+  const [location, setLocation] = useState("");
+
+  useEffect(() => {
+    // Aktualisierung der Geoposition
+    const updatePosition = (position) => {
+      const { latitude, longitude } = position.coords;
+      console.log("Koordinaten:", latitude, longitude);
+      // Geoposition in geohash konvertieren
+      var geohash = require("ngeohash");
+      let hash = geohash.encode(latitude, longitude);
+      setLocation(hash.substring(0, 7));
+      console.log("GeoHash:", location);
+    };
+
+    // Abfragen der Geoposition
+    if (navigator.geolocation) {
+      navigator.geolocation.watchPosition(updatePosition, (error) => {
+        console.error("Fehler bei der Geolokalisierung:", error);
+      });
+    } else {
+      console.error("Geolokalisierung wird nicht unterstützt");
+    }
+  }, [location]);
+  console.log("Log draußen: ", location);
+
+  switch (location) {
+    case "u33d9jt":
+      var PlayWelcomeAudio = true;
+      break;
+  }
 
   return (
     <>
@@ -21,10 +53,9 @@ export default function WelcomeAudio({ audio, onClick }) {
         height={500}
         alt="Boat trip in Berlin"
       />
-      <audio
-        autoPlay
-        src={`/audios/welcomeAudio_${audio.language}.m4a`}
-      ></audio>
+      {PlayWelcomeAudio && (
+        <audio autoPlay src={`/audios/welcomeAudio_${audio.language}.m4a`} />
+      )}
     </>
   );
 }
