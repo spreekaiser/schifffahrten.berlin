@@ -32,10 +32,10 @@ export default function WelcomeAudio({ audio, onClick }) {
       console.error("Geolokalisierung wird nicht unterstützt");
     }
   }, [location]);
-  console.log("Log draußen: ", location);
+  console.log("Log draußen - GeoHash: ", location);
 
   switch (location) {
-    case "u33d9jt":
+    case "u33dbcj":
       var PlayWelcomeAudio = true;
       break;
   }
