@@ -12,7 +12,7 @@ const StyledHeadline = styled.h1`
 // const StyledHead = styled(Head)``;
 
 // binding serviceWorker for getting Geolocation all the time
-if ("serviceWorker" in navigator) {
+if (typeof window !== "undefined" && "serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker
       .register("/service-worker.js")
