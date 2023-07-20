@@ -21,7 +21,7 @@ self.addEventListener("install", (event) => {
   event.waitIntil(
     caches
       .open(CACHE_NAME)
-      .then((cache) => cache.addAll(cachesFiles))
+      .then((cache) => cache.addAll(cacheFiles))
       .catch((error) => console.error("Error caching files: ", error))
   );
 });
