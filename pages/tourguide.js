@@ -11,6 +11,20 @@ const StyledHeadline = styled.h1`
 
 // const StyledHead = styled(Head)``;
 
+// binding serviceWorker for getting Geolocation all the time
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("/service-worker.js")
+      .then((registration) => {
+        console.log("Service Worker registered:", registration);
+      })
+      .catch((error) => {
+        console.error("Error registering Service Worker:", error);
+      });
+  });
+}
+
 export default function Tourguide() {
   const [language, setLanguage] = useState("");
   // console.log("Language: ", language);

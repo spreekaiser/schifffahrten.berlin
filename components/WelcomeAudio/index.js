@@ -19,7 +19,7 @@ export default function WelcomeAudio({ audio, onClick }) {
       // Geoposition in geohash konvertieren
       var geohash = require("ngeohash");
       let hash = geohash.encode(latitude, longitude);
-      setLocation(hash.substring(0, 7));
+      setLocation(hash.substring(0, 8));
       console.log("GeoHash:", location);
     };
 
@@ -35,8 +35,14 @@ export default function WelcomeAudio({ audio, onClick }) {
   console.log("Log draußen - GeoHash: ", location);
 
   switch (location) {
-    case "u33dbcj":
+    case "u33d9jtv":
       var PlayWelcomeAudio = true;
+      break;
+    case "u33d9jt6":
+      var PlayWelcomeAudio1 = true;
+      break;
+    case "u33d9jtb":
+      var PlayWelcomeAudio2 = true;
       break;
   }
 
@@ -54,6 +60,12 @@ export default function WelcomeAudio({ audio, onClick }) {
         alt="Boat trip in Berlin"
       />
       {PlayWelcomeAudio && (
+        <audio autoPlay src={`/audios/welcomeAudio_${audio.language}.m4a`} />
+      )}
+      {PlayWelcomeAudio1 && (
+        <audio autoPlay src={`/audios/welcomeAudio_${audio.language}.m4a`} />
+      )}
+      {PlayWelcomeAudio2 && (
         <audio autoPlay src={`/audios/welcomeAudio_${audio.language}.m4a`} />
       )}
     </>
