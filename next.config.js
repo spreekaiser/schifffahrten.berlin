@@ -4,15 +4,12 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
-
-  plugins: [
-    new CopyWebpackPlugin({
-      patterns: [
-        // src file zu public folder hinzufügen, falls  von serviceWorker benötigt
-        { from: "src/components/WelcomeAudio", to: "components/WelcomeAudio" },
-      ],
-    }),
-  ],
+  workboxOpts: {
+    // Pfad zur generierten Service Worker-Datei
+    swDest: "public/service-worker.js",
+    // Pfad zur benutzerdefinierten Service Worker-Datei
+    importScripts: ["/lib/custom-service-worker.js"],
+  },
 };
 
 module.exports = nextConfig;
