@@ -2,7 +2,19 @@
 const CACHE_NAME = "geolocation-caching-v1";
 
 // Seiten und Daten zu cachen
-const cacheFiles = ["/components/WelcomeAudio/index.js", "/public/audios"];
+const cacheFiles = [
+  "../components/WelcomeAudio/index.js",
+  "audios/welcomeAudio_de.m4a",
+  "audios/welcomeAudio_en.m4a",
+  "audios/welcomeAudio_es.m4a",
+  "audios/welcomeAudio_fr.m4a",
+  "audios/welcomeAudio_gr.m4a",
+  "audios/welcomeAudio_ir.m4a",
+  "audios/welcomeAudio_isr.m4a",
+  "audios/welcomeAudio_it.m4a",
+  "audios/welcomeAudio_pl.m4a",
+  "audios/welcomeAudio_pt.m4a",
+];
 
 // ServiceWorker installieren
 self.addEventListener("install", (event) => {
