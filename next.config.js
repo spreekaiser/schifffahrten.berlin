@@ -4,11 +4,15 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
-  // api: {
-  //   bodyParser: {
-  //     sizeLimit: "imb",
-  //   },
-  // },
+
+  plugins: [
+    new CopyWebpackPlugin({
+      patterns: [
+        // src file zu public folder hinzufügen, falls  von serviceWorker benötigt
+        { from: "src/components/WelcomeAudio", to: "components/WelcomeAudio" },
+      ],
+    }),
+  ],
 };
 
 module.exports = nextConfig;
