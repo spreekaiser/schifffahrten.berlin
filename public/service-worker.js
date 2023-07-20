@@ -3,7 +3,7 @@ const CACHE_NAME = "geolocation-caching-v1";
 
 // Seiten und Daten zu cachen
 const cacheFiles = [
-  "../components/WelcomeAudio/index.js",
+  "components/WelcomeAudio/index.js",
   "audios/welcomeAudio_de.m4a",
   "audios/welcomeAudio_en.m4a",
   "audios/welcomeAudio_es.m4a",
@@ -22,6 +22,7 @@ self.addEventListener("install", (event) => {
     caches
       .open(CACHE_NAME)
       .then((cache) => cache.addAll(cacheFiles))
+      .then(() => console.log("Cache erfolgreich erstellt:", CACHE_NAME))
       .catch((error) => console.error("Error caching files: ", error))
   );
 });
@@ -33,7 +34,7 @@ self.addEventListener("activate", (event) => {
       .keys()
       .then((cacheNames) => {
         return Promise.all(
-          cahcesNames.map((cache) => {
+          cacheNames.map((cache) => {
             if (cache !== CACHE_NAME) {
               return caches.delete(cache);
             }
