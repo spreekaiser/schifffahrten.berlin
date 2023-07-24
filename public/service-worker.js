@@ -3,7 +3,8 @@ const CACHE_NAME = "geolocation-caching-v1";
 
 // Seiten und Daten zu cachen
 const cacheFiles = [
-  "components/WelcomeAudio/index.js",
+  // "components/WelcomeAudio/index.js",
+  "getGeolocation.js",
   "audios/welcomeAudio_de.m4a",
   "audios/welcomeAudio_en.m4a",
   "audios/welcomeAudio_es.m4a",
