@@ -19,7 +19,7 @@ const cacheFiles = [
 
 // ServiceWorker installieren
 self.addEventListener("install", (event) => {
-  event.waitIntil(
+  event.waitUntil(
     caches
       .open(CACHE_NAME)
       .then((cache) => cache.addAll(cacheFiles))
