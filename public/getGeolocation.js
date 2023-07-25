@@ -4,7 +4,7 @@ export default function getGeolocation() {
   // Aktualisierung der Geoposition
   const updatePosition = (position) => {
     const { latitude, longitude } = position.coords;
-    console.log("Koordinaten:", latitude, longitude);
+    console.log("getGeolocation --> Koordinaten:", latitude, longitude);
     // Geoposition in geohash konvertieren
     var geohash = require("ngeohash");
     let hash = geohash.encode(latitude, longitude);
@@ -24,7 +24,7 @@ export default function getGeolocation() {
     }
   };
 
-  console.log("Log draußen - GeoHash: ", location);
+  console.log("GeoLog draußen - getGeolocation: ", location);
 
   // startet Abfrage der GeoPosition
   requestPosition();
@@ -36,15 +36,17 @@ const locationPositioning = () => {
 
   switch (location) {
     case "u33d9jtv":
-      // --> !!! Logik anpassen !!!
-      var PlayWelcomeAudio;
-      return (PlayWelcomeAudio = true);
+      console.log("getGeolocation: case u33d9jtv");
+      <audio autoPlay src={`/audios/welcomeAudio_de.m4a`} />;
+      break;
     case "u33d9jt6":
-      var PlayWelcomeAudio1;
-      return (PlayWelcomeAudio1 = true);
+      console.log("getGeolocation: case u33d9jt6");
+      <audio autoPlay src={`/audios/welcomeAudio_de.m4a`} />;
+      break;
     case "u33d9jtb":
-      var PlayWelcomeAudio2;
-      return (PlayWelcomeAudio2 = true);
+      console.log("getGeolocation: case u33d9jtb");
+      <audio autoPlay src={`/audios/welcomeAudio_de.m4a`} />;
+      break;
   }
 };
 
