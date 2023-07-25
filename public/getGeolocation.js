@@ -10,7 +10,7 @@ export default function getGeolocation() {
     let hash = geohash.encode(latitude, longitude);
     // setLocation(hash.substring(0, 8));
     location = hash.substring(0, 8);
-    console.log("GeoHash:", location);
+    console.log("getGeolocation --> GeoHash:", location);
   };
 
   // Abfragen der Geoposition
@@ -24,7 +24,7 @@ export default function getGeolocation() {
     }
   };
 
-  console.log("GeoLog draußen - getGeolocation: ", location);
+  console.log("geoLog draußen - getGeolocation: ", location);
 
   // startet Abfrage der GeoPosition
   requestPosition();
