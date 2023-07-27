@@ -1,6 +1,6 @@
 export default function getGeolocation() {
   return new Promise((resolve, reject) => {
-    let location;
+    let geoLocation;
 
     if ("geolocation" in navigator) {
       // Aktualisierung der Geoposition
@@ -11,11 +11,11 @@ export default function getGeolocation() {
         var geohash = require("ngeohash");
         let hash = geohash.encode(latitude, longitude);
         // setLocation(hash.substring(0, 8));
-        location = hash.substring(0, 8);
-        console.log("getGeolocation --> GeoHash:", location);
+        geoLocation = hash.substring(0, 8);
+        console.log("getGeolocation --> GeoHash:", geoLocation);
 
         // location value an Promise Object übergeben
-        resolve(location);
+        resolve(geoLocation);
       };
 
       // Abfragen der Geoposition
@@ -36,7 +36,7 @@ export default function getGeolocation() {
 
       // startet Abfrage der GeoPosition
       requestPosition();
-      return location;
+      return geoLocation;
     } else {
       console.log("Geolokalisierung wird nicht unterstützt");
     }
@@ -46,9 +46,9 @@ export default function getGeolocation() {
 console.log("geoLog draußen - getGeolocation: ", location);
 
 const locationPositioning = async () => {
-  const location = await getGeolocation();
+  const position = await getGeolocation();
 
-  switch (location) {
+  switch (position) {
     case "u33d9jt":
       console.log("getGeolocation: case u33d9jt");
       try {
