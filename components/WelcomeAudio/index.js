@@ -35,7 +35,9 @@ export default function WelcomeAudio({ audio, onClick }) {
   }, [location]);
 
   console.log("Log draußen - GeoHash: ", location);
-  locationPositioning();
+  if (typeof window !== "undefined") {
+    locationPositioning();
+  }
 
   switch (location) {
     case "u33d9jtv":
