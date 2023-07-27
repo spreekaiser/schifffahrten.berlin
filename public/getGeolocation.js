@@ -1,42 +1,52 @@
 export default function getGeolocation() {
-  let location;
+  return new Promise((resolve, reject) => {
+    let location;
 
-  if ("geolocation" in navigator) {
-    // Aktualisierung der Geoposition
-    const updatePosition = (position) => {
-      const { latitude, longitude } = position.coords;
-      console.log("getGeolocation --> Koordinaten:", latitude, longitude);
-      // Geoposition in geohash konvertieren
-      var geohash = require("ngeohash");
-      let hash = geohash.encode(latitude, longitude);
-      // setLocation(hash.substring(0, 8));
-      location = hash.substring(0, 8);
-      console.log("getGeolocation --> GeoHash:", location);
-    };
+    if ("geolocation" in navigator) {
+      // Aktualisierung der Geoposition
+      const updatePosition = (position) => {
+        const { latitude, longitude } = position.coords;
+        console.log("getGeolocation --> Koordinaten:", latitude, longitude);
+        // Geoposition in geohash konvertieren
+        var geohash = require("ngeohash");
+        let hash = geohash.encode(latitude, longitude);
+        // setLocation(hash.substring(0, 8));
+        location = hash.substring(0, 8);
+        console.log("getGeolocation --> GeoHash:", location);
 
-    // Abfragen der Geoposition
-    const requestPosition = () => {
-      if (navigator.geolocation) {
-        navigator.geolocation.watchPosition(updatePosition, (error) => {
-          console.error("Fehler bei der Geolokalisierung:", error);
-        });
-      } else {
-        console.error("Geolokalisierung kann nicht abgefragt werden");
-      }
-    };
+        // location value an Promise Object übergeben
+        resolve(location);
+      };
 
-    // startet Abfrage der GeoPosition
-    requestPosition();
-    return location;
-  } else {
-    console.log("Geolokalisierung wird nicht unterstützt");
-  }
+      // Abfragen der Geoposition
+      const requestPosition = () => {
+        if (navigator.geolocation) {
+          navigator.geolocation.watchPosition(updatePosition, (error) => {
+            console.error("Fehler bei der Geolokalisierung:", error);
+
+            // Bei Fehler: error value an Promise Object übergeben
+            reject(error);
+          });
+        } else {
+          console.error("Geolokalisierung kann nicht abgefragt werden");
+          // Falls Geolokaliesierung nicht unterstützt wird -> Promise Object ist null
+          reject(null);
+        }
+      };
+
+      // startet Abfrage der GeoPosition
+      requestPosition();
+      return location;
+    } else {
+      console.log("Geolokalisierung wird nicht unterstützt");
+    }
+  });
 }
 
 console.log("geoLog draußen - getGeolocation: ", location);
 
 const locationPositioning = async () => {
-  const location = getGeolocation();
+  const location = await getGeolocation();
 
   switch (location) {
     case "u33d9jt":
