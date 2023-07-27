@@ -43,10 +43,9 @@ export default function getGeolocation() {
   });
 }
 
-console.log("geoLog draußen - getGeolocation: ", location);
-
 const locationPositioning = async () => {
   const position = await getGeolocation();
+  console.log("getGeolocation --> position: ", position);
 
   switch (position) {
     case "u33d9jt":
