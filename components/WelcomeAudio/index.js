@@ -4,7 +4,7 @@ import Button from "../elements/Button";
 import Image from "next/image";
 import welcomeImage from "../../public/images/welcomeImage.jpeg";
 import lang from "@/resources/data/language.json";
-// import getGeolocation from "../../public/getGeolocation.js";
+import { locationPositioning } from "../../public/getGeolocation.js";
 
 export default function WelcomeAudio({ audio, onClick }) {
   // console.log("audio: ", audio.language);
@@ -35,7 +35,7 @@ export default function WelcomeAudio({ audio, onClick }) {
   }, [location]);
 
   console.log("Log draußen - GeoHash: ", location);
-  // locationPositioning();
+  locationPositioning();
 
   switch (location) {
     case "u33d9jtv":
