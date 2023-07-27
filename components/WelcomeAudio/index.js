@@ -21,7 +21,7 @@ export default function WelcomeAudio({ audio, onClick }) {
       var geohash = require("ngeohash");
       let hash = geohash.encode(latitude, longitude);
       setLocation(hash.substring(0, 8));
-      console.log("GeoHash:", location);
+      console.log("GeoHash:", hash.substring(0, 8));
     };
 
     // Abfragen der Geoposition
