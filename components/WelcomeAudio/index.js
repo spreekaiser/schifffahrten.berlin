@@ -37,17 +37,17 @@ export default function WelcomeAudio({ audio, onClick }) {
   // console.log("Log draußen - GeoHash: ", location);
   locationPositioning();
 
-  switch (location) {
-    case "u33d9jtv":
-      var PlayWelcomeAudio = true;
-      break;
-    case "u33d9jt6":
-      var PlayWelcomeAudio1 = true;
-      break;
-    case "u33d9jtb":
-      var PlayWelcomeAudio2 = true;
-      break;
-  }
+  // switch (location) {
+  //   case "u33d9jtv":
+  //     var PlayWelcomeAudio = true;
+  //     break;
+  //   case "u33d9jt6":
+  //     var PlayWelcomeAudio1 = true;
+  //     break;
+  //   case "u33d9jtb":
+  //     var PlayWelcomeAudio2 = true;
+  //     break;
+  // }
 
   return (
     <>
@@ -62,15 +62,17 @@ export default function WelcomeAudio({ audio, onClick }) {
         height={500}
         alt="Boat trip in Berlin"
       />
-      {PlayWelcomeAudio && (
-        <audio autoPlay src={`/audios/welcomeAudio_${audio.language}.m4a`} />
-      )}
+      {/* {
+        PlayWelcomeAudio && ( */}
+      <audio autoPlay src={`/audios/welcomeAudio_${audio.language}.m4a`} />
+      {/* )}
       {PlayWelcomeAudio1 && (
         <audio autoPlay src={`/audios/welcomeAudio_${audio.language}.m4a`} />
       )}
       {PlayWelcomeAudio2 && (
         <audio autoPlay src={`/audios/welcomeAudio_${audio.language}.m4a`} />
-      )}
+      ) */}
+      {/* } */}
     </>
   );
 }
