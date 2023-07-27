@@ -31,21 +31,49 @@ export default function getGeolocation() {
   return location;
 }
 
-const locationPositioning = () => {
+const locationPositioning = async () => {
   const location = getGeolocation();
 
   switch (location) {
-    case "u33d9jtv":
-      console.log("getGeolocation: case u33d9jtv");
-      <audio autoPlay src={`/audios/welcomeAudio_de.m4a`} />;
+    case "u33d9jt":
+      console.log("getGeolocation: case u33d9jt");
+      try {
+        // Audio aus dem Cache laden und abspielen
+        const audioPath = "/audios/welcomeAudio_de.m4a";
+        const response = await fetch(audioPath);
+        const audioBlob = await response.blob();
+        const audioURL = URL.createObjectURL(audioBlob);
+        const audio_u33d9jt = new Audio(audioURL);
+        audio_u33d9jt.play();
+      } catch (error) {
+        console.error("Fehler beim Laden und Abspielen des Audios:", error);
+      }
       break;
-    case "u33d9jt6":
-      console.log("getGeolocation: case u33d9jt6");
-      <audio autoPlay src={`/audios/welcomeAudio_de.m4a`} />;
+    case "u33d9jr":
+      console.log("getGeolocation: case u33d9jr");
+      try {
+        const audioPath = "/audios/welcomeAudio_en.m4a";
+        const response = await fetch(audioPath);
+        const audioBlob = await response.blob();
+        const audioURL = URL.createObjectURL(audioBlob);
+        const audio_u33d9jr = new Audio(audioURL);
+        audio_u33d9jr.play();
+      } catch (error) {
+        console.error("Fehler beim Laden und Abspielen des Audios:", error);
+      }
       break;
-    case "u33d9jtb":
-      console.log("getGeolocation: case u33d9jtb");
-      <audio autoPlay src={`/audios/welcomeAudio_de.m4a`} />;
+    case "u33d9jz":
+      console.log("getGeolocation: case u33d9jz");
+      try {
+        const audioPath = "/audios/welcomeAudio_fr.m4a";
+        const response = await fetch(audioPath);
+        const audioBlob = await response.blob();
+        const audioURL = URL.createObjectURL(audioBlob);
+        const audio_u33d9jz = new Audio(audioURL);
+        audio_u33d9jz.play();
+      } catch (error) {
+        console.error("Fehler beim Laden und Abspielen des Audios:", error);
+      }
       break;
   }
 };
