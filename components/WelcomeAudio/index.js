@@ -4,15 +4,17 @@ import Button from "../elements/Button";
 import Image from "next/image";
 import welcomeImage from "../../public/images/welcomeImage.jpeg";
 import lang from "@/resources/data/language.json";
-import locationPositioning from "../../public/getGeolocation.js";
 
 export default function WelcomeAudio({ audio, onClick }) {
   // console.log("audio: ", audio.language);
   // console.log("lang: ", lang);
 
   useEffect(() => {
-    import("../../public/getGeolocation.js").catch((error) => {
-      console.error("Fehler bim Import der getGeolocation-Datei", error);
+    import("../../public/getGeolocation.js").then((module) => {
+      const { locationPositioning } = module.default;
+      if (typeof window !== "undefined") {
+        locationPositioning();
+      }
     });
   }, []);
 
@@ -41,9 +43,6 @@ export default function WelcomeAudio({ audio, onClick }) {
   }, [location]);
 
   console.log("Log draußen - GeoHash: ", location);
-  if (typeof window !== "undefined") {
-    locationPositioning();
-  }
 
   switch (location) {
     case "u33d9jtv":
