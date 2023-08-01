@@ -55,6 +55,7 @@ self.addEventListener("fetch", (event) => {
         if (response) {
           return response;
         }
+        console.log(event.request);
         return fetch(event.request);
       })
       .catch((error) => console.error("Error fetching and caching", error))
